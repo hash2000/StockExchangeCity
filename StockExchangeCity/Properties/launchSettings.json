@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StockExchangeCity": {
+      "commandName": "Project",
+      "workingDirectory": "../"
+    }
+  }
+}

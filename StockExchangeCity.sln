@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35208.52
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity", "StockExchangeCity\StockExchangeCity.csproj", "{E10C5054-FA41-48A5-8848-6EBA28141E12}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity.GameEntities", "StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj", "{5F808CD6-859E-4B3E-9F5C-A54DBC240655}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity.GameUsers", "StockExchangeCity.Users\StockExchangeCity.GameUsers.csproj", "{3595EA5F-88DC-4C27-9530-53EA675B5290}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeCity.UI", "StockExchangeCity.UI\StockExchangeCity.UI.csproj", "{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeCity.Tool.MapEditor", "StockExchangeCity.Tool.MapEditor\StockExchangeCity.Tool.MapEditor.csproj", "{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E10C5054-FA41-48A5-8848-6EBA28141E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E10C5054-FA41-48A5-8848-6EBA28141E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E10C5054-FA41-48A5-8848-6EBA28141E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E10C5054-FA41-48A5-8848-6EBA28141E12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F808CD6-859E-4B3E-9F5C-A54DBC240655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F808CD6-859E-4B3E-9F5C-A54DBC240655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F808CD6-859E-4B3E-9F5C-A54DBC240655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F808CD6-859E-4B3E-9F5C-A54DBC240655}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3595EA5F-88DC-4C27-9530-53EA675B5290}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3595EA5F-88DC-4C27-9530-53EA675B5290}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3595EA5F-88DC-4C27-9530-53EA675B5290}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3595EA5F-88DC-4C27-9530-53EA675B5290}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83CA2EBE-9BF3-4FA2-B9AA-50A753B51872}
+	EndGlobalSection
+EndGlobal
