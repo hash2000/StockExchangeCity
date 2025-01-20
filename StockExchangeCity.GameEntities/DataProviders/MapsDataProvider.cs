@@ -1,17 +1,16 @@
 ﻿using Microsoft.Extensions.Logging;
-using StockExchangeCity.GameEntities.Map;
 using StockExchangeCity.GameUsers;
 
-namespace StockExchangeCity.GameEntities.Loaders
+namespace StockExchangeCity.GameEntities.DataProviders
 {
-	internal class MapLoader : IMapLoader
+	internal class MapsDataProvider : IMapsDataProvider
 	{
 		private readonly ILogger _logger;
 		private readonly IGameUsersRepository _users;
 
 
 
-		public MapLoader(ILogger logger, IGameUsersRepository users)
+		public MapsDataProvider(ILogger logger, IGameUsersRepository users)
 		{
 			_logger = logger;
 			_users = users;

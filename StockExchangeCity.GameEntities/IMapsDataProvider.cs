@@ -1,6 +1,6 @@
 ﻿namespace StockExchangeCity.GameEntities
 {
-	public interface IMapLoader
+	public interface IMapsDataProvider
 	{
 		Task LoadAsync();
 	}

@@ -1,16 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+		<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj" />
-    <ProjectReference Include="..\StockExchangeCity.UI\StockExchangeCity.UI.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj" />
+		<ProjectReference Include="..\StockExchangeCity.UI\StockExchangeCity.UI.csproj" />
+	</ItemGroup>
 
 </Project>

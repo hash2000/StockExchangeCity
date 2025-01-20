@@ -30,28 +30,34 @@
 		{
 			TabbarEditor = new TabControl();
 			TabMapEditor = new TabPage();
-			TabAreaEditor = new TabPage();
-			AplitContainerArea = new SplitContainer();
-			TabbarAreaProperties = new TabControl();
-			TabAreaImagesList = new TabPage();
-			tabPage2 = new TabPage();
-			SplitContainerAreaImages = new SplitContainer();
+			SplitContainerMapGen = new SplitContainer();
+			ListBiomes = new ListBox();
+			panel1 = new Panel();
+			PanelBiomeColor = new Panel();
+			TxtColor = new TextBox();
+			TxtHumedityMax = new TextBox();
+			TxtHumedityMin = new TextBox();
+			TxtTempMax = new TextBox();
+			TxtTempMin = new TextBox();
+			TxtHeightMax = new TextBox();
+			TxtHeightMin = new TextBox();
+			label4 = new Label();
+			label3 = new Label();
+			label2 = new Label();
+			label1 = new Label();
+			ColorBiome = new ColorDialog();
 			TabbarEditor.SuspendLayout();
-			TabAreaEditor.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)AplitContainerArea).BeginInit();
-			AplitContainerArea.Panel2.SuspendLayout();
-			AplitContainerArea.SuspendLayout();
-			TabbarAreaProperties.SuspendLayout();
-			TabAreaImagesList.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)SplitContainerAreaImages).BeginInit();
-			SplitContainerAreaImages.SuspendLayout();
+			TabMapEditor.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)SplitContainerMapGen).BeginInit();
+			SplitContainerMapGen.Panel2.SuspendLayout();
+			SplitContainerMapGen.SuspendLayout();
+			panel1.SuspendLayout();
 			SuspendLayout();
 			// 
 			// TabbarEditor
 			// 
 			TabbarEditor.Appearance = TabAppearance.FlatButtons;
 			TabbarEditor.Controls.Add(TabMapEditor);
-			TabbarEditor.Controls.Add(TabAreaEditor);
 			TabbarEditor.Dock = DockStyle.Fill;
 			TabbarEditor.Location = new Point(0, 0);
 			TabbarEditor.Name = "TabbarEditor";
@@ -61,6 +67,7 @@
 			// 
 			// TabMapEditor
 			// 
+			TabMapEditor.Controls.Add(SplitContainerMapGen);
 			TabMapEditor.Location = new Point(4, 32);
 			TabMapEditor.Name = "TabMapEditor";
 			TabMapEditor.Padding = new Padding(3);
@@ -69,74 +76,145 @@
 			TabMapEditor.Text = "Карта";
 			TabMapEditor.UseVisualStyleBackColor = true;
 			// 
-			// TabAreaEditor
+			// SplitContainerMapGen
 			// 
-			TabAreaEditor.Controls.Add(AplitContainerArea);
-			TabAreaEditor.Location = new Point(4, 32);
-			TabAreaEditor.Name = "TabAreaEditor";
-			TabAreaEditor.Padding = new Padding(3);
-			TabAreaEditor.Size = new Size(1409, 650);
-			TabAreaEditor.TabIndex = 1;
-			TabAreaEditor.Text = "Область";
-			TabAreaEditor.UseVisualStyleBackColor = true;
+			SplitContainerMapGen.Dock = DockStyle.Fill;
+			SplitContainerMapGen.Location = new Point(3, 3);
+			SplitContainerMapGen.Name = "SplitContainerMapGen";
 			// 
-			// AplitContainerArea
+			// SplitContainerMapGen.Panel2
 			// 
-			AplitContainerArea.Dock = DockStyle.Fill;
-			AplitContainerArea.Location = new Point(3, 3);
-			AplitContainerArea.Name = "AplitContainerArea";
+			SplitContainerMapGen.Panel2.Controls.Add(ListBiomes);
+			SplitContainerMapGen.Panel2.Controls.Add(panel1);
+			SplitContainerMapGen.Size = new Size(1403, 644);
+			SplitContainerMapGen.SplitterDistance = 1053;
+			SplitContainerMapGen.SplitterWidth = 6;
+			SplitContainerMapGen.TabIndex = 0;
 			// 
-			// AplitContainerArea.Panel2
+			// ListBiomes
 			// 
-			AplitContainerArea.Panel2.Controls.Add(TabbarAreaProperties);
-			AplitContainerArea.Size = new Size(1403, 644);
-			AplitContainerArea.SplitterDistance = 938;
-			AplitContainerArea.SplitterWidth = 6;
-			AplitContainerArea.TabIndex = 0;
+			ListBiomes.BackColor = SystemColors.Control;
+			ListBiomes.Dock = DockStyle.Fill;
+			ListBiomes.FormattingEnabled = true;
+			ListBiomes.Location = new Point(0, 139);
+			ListBiomes.Name = "ListBiomes";
+			ListBiomes.Size = new Size(344, 505);
+			ListBiomes.TabIndex = 2;
+			ListBiomes.SelectedIndexChanged += ListBiomes_SelectedIndexChanged;
 			// 
-			// TabbarAreaProperties
+			// panel1
 			// 
-			TabbarAreaProperties.Appearance = TabAppearance.FlatButtons;
-			TabbarAreaProperties.Controls.Add(TabAreaImagesList);
-			TabbarAreaProperties.Controls.Add(tabPage2);
-			TabbarAreaProperties.Dock = DockStyle.Fill;
-			TabbarAreaProperties.Location = new Point(0, 0);
-			TabbarAreaProperties.Name = "TabbarAreaProperties";
-			TabbarAreaProperties.SelectedIndex = 0;
-			TabbarAreaProperties.Size = new Size(459, 644);
-			TabbarAreaProperties.TabIndex = 0;
+			panel1.Controls.Add(PanelBiomeColor);
+			panel1.Controls.Add(TxtColor);
+			panel1.Controls.Add(TxtHumedityMax);
+			panel1.Controls.Add(TxtHumedityMin);
+			panel1.Controls.Add(TxtTempMax);
+			panel1.Controls.Add(TxtTempMin);
+			panel1.Controls.Add(TxtHeightMax);
+			panel1.Controls.Add(TxtHeightMin);
+			panel1.Controls.Add(label4);
+			panel1.Controls.Add(label3);
+			panel1.Controls.Add(label2);
+			panel1.Controls.Add(label1);
+			panel1.Dock = DockStyle.Top;
+			panel1.Location = new Point(0, 0);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(344, 139);
+			panel1.TabIndex = 1;
 			// 
-			// TabAreaImagesList
+			// PanelBiomeColor
 			// 
-			TabAreaImagesList.Controls.Add(SplitContainerAreaImages);
-			TabAreaImagesList.Location = new Point(4, 32);
-			TabAreaImagesList.Name = "TabAreaImagesList";
-			TabAreaImagesList.Padding = new Padding(3);
-			TabAreaImagesList.Size = new Size(451, 608);
-			TabAreaImagesList.TabIndex = 0;
-			TabAreaImagesList.Text = "Картинки";
-			TabAreaImagesList.UseVisualStyleBackColor = true;
+			PanelBiomeColor.BorderStyle = BorderStyle.FixedSingle;
+			PanelBiomeColor.Location = new Point(224, 102);
+			PanelBiomeColor.Name = "PanelBiomeColor";
+			PanelBiomeColor.Size = new Size(27, 27);
+			PanelBiomeColor.TabIndex = 11;
+			PanelBiomeColor.MouseDoubleClick += PanelBiomeColor_MouseDoubleClick;
 			// 
-			// tabPage2
+			// TxtColor
 			// 
-			tabPage2.Location = new Point(4, 32);
-			tabPage2.Name = "tabPage2";
-			tabPage2.Padding = new Padding(3);
-			tabPage2.Size = new Size(312, 608);
-			tabPage2.TabIndex = 1;
-			tabPage2.Text = "tabPage2";
-			tabPage2.UseVisualStyleBackColor = true;
+			TxtColor.Location = new Point(109, 102);
+			TxtColor.Name = "TxtColor";
+			TxtColor.Size = new Size(109, 27);
+			TxtColor.TabIndex = 10;
 			// 
-			// SplitContainerAreaImages
+			// TxtHumedityMax
 			// 
-			SplitContainerAreaImages.Dock = DockStyle.Fill;
-			SplitContainerAreaImages.Location = new Point(3, 3);
-			SplitContainerAreaImages.Name = "SplitContainerAreaImages";
-			SplitContainerAreaImages.Orientation = Orientation.Horizontal;
-			SplitContainerAreaImages.Size = new Size(445, 602);
-			SplitContainerAreaImages.SplitterDistance = 361;
-			SplitContainerAreaImages.SplitterWidth = 6;
-			SplitContainerAreaImages.TabIndex = 0;
+			TxtHumedityMax.Location = new Point(224, 69);
+			TxtHumedityMax.Name = "TxtHumedityMax";
+			TxtHumedityMax.Size = new Size(109, 27);
+			TxtHumedityMax.TabIndex = 9;
+			// 
+			// TxtHumedityMin
+			// 
+			TxtHumedityMin.Location = new Point(109, 69);
+			TxtHumedityMin.Name = "TxtHumedityMin";
+			TxtHumedityMin.Size = new Size(109, 27);
+			TxtHumedityMin.TabIndex = 8;
+			// 
+			// TxtTempMax
+			// 
+			TxtTempMax.Location = new Point(224, 36);
+			TxtTempMax.Name = "TxtTempMax";
+			TxtTempMax.Size = new Size(109, 27);
+			TxtTempMax.TabIndex = 7;
+			// 
+			// TxtTempMin
+			// 
+			TxtTempMin.Location = new Point(109, 36);
+			TxtTempMin.Name = "TxtTempMin";
+			TxtTempMin.Size = new Size(109, 27);
+			TxtTempMin.TabIndex = 6;
+			// 
+			// TxtHeightMax
+			// 
+			TxtHeightMax.Location = new Point(224, 3);
+			TxtHeightMax.Name = "TxtHeightMax";
+			TxtHeightMax.Size = new Size(109, 27);
+			TxtHeightMax.TabIndex = 5;
+			// 
+			// TxtHeightMin
+			// 
+			TxtHeightMin.Location = new Point(109, 3);
+			TxtHeightMin.Name = "TxtHeightMin";
+			TxtHeightMin.Size = new Size(109, 27);
+			TxtHeightMin.TabIndex = 4;
+			// 
+			// label4
+			// 
+			label4.AutoSize = true;
+			label4.Location = new Point(61, 105);
+			label4.Name = "label4";
+			label4.Size = new Size(42, 20);
+			label4.TabIndex = 3;
+			label4.Text = "Цвет";
+			// 
+			// label3
+			// 
+			label3.AutoSize = true;
+			label3.Location = new Point(19, 72);
+			label3.Name = "label3";
+			label3.Size = new Size(84, 20);
+			label3.TabIndex = 2;
+			label3.Text = "Влажность";
+			// 
+			// label2
+			// 
+			label2.AutoSize = true;
+			label2.Location = new Point(3, 39);
+			label2.Name = "label2";
+			label2.Size = new Size(100, 20);
+			label2.TabIndex = 1;
+			label2.Text = "Температура";
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Location = new Point(44, 6);
+			label1.Name = "label1";
+			label1.Size = new Size(59, 20);
+			label1.TabIndex = 0;
+			label1.Text = "Высота";
 			// 
 			// Desktop
 			// 
@@ -148,14 +226,12 @@
 			Text = "Редактор карт";
 			Load += Desktop_Load;
 			TabbarEditor.ResumeLayout(false);
-			TabAreaEditor.ResumeLayout(false);
-			AplitContainerArea.Panel2.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)AplitContainerArea).EndInit();
-			AplitContainerArea.ResumeLayout(false);
-			TabbarAreaProperties.ResumeLayout(false);
-			TabAreaImagesList.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)SplitContainerAreaImages).EndInit();
-			SplitContainerAreaImages.ResumeLayout(false);
+			TabMapEditor.ResumeLayout(false);
+			SplitContainerMapGen.Panel2.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)SplitContainerMapGen).EndInit();
+			SplitContainerMapGen.ResumeLayout(false);
+			panel1.ResumeLayout(false);
+			panel1.PerformLayout();
 			ResumeLayout(false);
 		}
 
@@ -163,11 +239,21 @@
 
 		private TabControl TabbarEditor;
 		private TabPage TabMapEditor;
-		private TabPage TabAreaEditor;
-		private SplitContainer AplitContainerArea;
-		private TabControl TabbarAreaProperties;
-		private TabPage TabAreaImagesList;
-		private TabPage tabPage2;
-		private SplitContainer SplitContainerAreaImages;
+		private SplitContainer SplitContainerMapGen;
+		private Panel panel1;
+		private ListBox ListBiomes;
+		private Label label1;
+		private Label label3;
+		private Label label2;
+		private Label label4;
+		private TextBox TxtColor;
+		private TextBox TxtHumedityMax;
+		private TextBox TxtHumedityMin;
+		private TextBox TxtTempMax;
+		private TextBox TxtTempMin;
+		private TextBox TxtHeightMax;
+		private TextBox TxtHeightMin;
+		private ColorDialog ColorBiome;
+		private Panel PanelBiomeColor;
 	}
 }

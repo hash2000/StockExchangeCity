@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using StockExchangeCity.GameEntities.Loaders;
+using StockExchangeCity.GameEntities.DataProviders;
 
 namespace StockExchangeCity.GameEntities
 {
@@ -7,7 +7,8 @@ namespace StockExchangeCity.GameEntities
 	{
 		public static IServiceCollection UseMapLoader(this IServiceCollection services, string dataPath)
 		{
-			services.AddSingleton<IMapLoader, MapLoader>();
+			services.AddSingleton<IMapsDataProvider, MapsDataProvider>();
+			services.AddSingleton<IBiomesDataProvider>(sb => new BiomesFromJsonDataProvider(dataPath));
 			return services;
 		}
 	}

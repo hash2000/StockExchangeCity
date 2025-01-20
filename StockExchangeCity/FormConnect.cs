@@ -6,11 +6,11 @@ namespace StockExchangeCity
 {
 	public partial class FormConnect : Form
 	{
-		private readonly IMapLoader _mapLoader;
+		private readonly IMapsDataProvider _mapLoader;
 		private readonly IGameUsersRepository _users;
 		private readonly ILogger _logger;
 
-		public FormConnect(IMapLoader mapLoader, IGameUsersRepository users, ILogger logger)
+		public FormConnect(IMapsDataProvider mapLoader, IGameUsersRepository users, ILogger logger)
 		{
 			InitializeComponent();
 
