@@ -1,4 +1,5 @@
 ﻿using StockExchangeCity.GameEntities.Map;
+using Range = StockExchangeCity.GameEntities.Map.Range;
 
 namespace StockExchangeCity.GameEntities
 {
@@ -6,8 +7,12 @@ namespace StockExchangeCity.GameEntities
 	{
 		Dictionary<string, Biome> Biomes { get; }
 
-		void Load();
+		Task LoadAsync();
+
+		Task SaveAsync();
 
 		Biome? Find(int height, float temperature, float humidity);
+
+		List<Biome> FindByAnyOption(Range height, Range temperature, Range humidity);
 	}
 }

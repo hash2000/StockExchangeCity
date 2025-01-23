@@ -1,4 +1,5 @@
 ﻿using StockExchangeCity.GameEntities.Map;
+using Range = StockExchangeCity.GameEntities.Map.Range;
 
 namespace StockExchangeCity.GameEntities.DataProviders
 {
@@ -6,7 +7,9 @@ namespace StockExchangeCity.GameEntities.DataProviders
 	{
 		public abstract Dictionary<string, Biome> Biomes { get; }
 
-		public abstract void Load();
+		public abstract Task LoadAsync();
+
+		public abstract Task SaveAsync();
 
 		public Biome? Find(int height, float temperature, float humidity)
 		{
@@ -33,5 +36,32 @@ namespace StockExchangeCity.GameEntities.DataProviders
 			return null;
 		}
 
+		public List<Biome> FindByAnyOption(Range height, Range temperature, Range humidity)
+		{
+			var result = new List<Biome>();
+
+			foreach (var biome in Biomes)
+			{
+				if (!biome.Value.Height.IsIncluded(height))
+				{
+					result.Add(biome.Value);
+					continue;
+				}
+
+				if (!biome.Value.Temperature.IsIncluded(temperature))
+				{
+					result.Add(biome.Value);
+					continue;
+				}
+
+				if (!biome.Value.Humidity.IsIncluded(humidity))
+				{
+					result.Add(biome.Value);
+					continue;
+				}
+			}
+
+			return result;
+		}
 	}
 }

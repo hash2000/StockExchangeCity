@@ -10,5 +10,15 @@
 		{
 			return Min <= value && value <= Max;
 		}
+
+		public bool IsIntersect(Range range)
+		{
+			return IsFits(range.Min) || IsFits(range.Max);
+		}
+
+		public bool IsIncluded(Range range)
+		{
+			return IsFits(range.Min) && IsFits(range.Max);
+		}
 	}
 }

@@ -6,37 +6,48 @@ namespace StockExchangeCity.GameEntities.DataProviders
 	internal class BiomesFromJsonDataProvider : BaseBiomesDataProvider
 	{
 		private readonly string _mapsPath;
-		private readonly Dictionary<string, Biome> _bioms = new Dictionary<string, Biome>();
+		private readonly string _biomesPath;
+
+		private readonly Dictionary<string, Biome> _biomes = new Dictionary<string, Biome>();
 
 		public BiomesFromJsonDataProvider(string mapsPath)
 		{
 			_mapsPath = mapsPath;
+			_biomesPath = Path.Combine(_mapsPath, "Prefabs/Biomes/biomes.json");
 		}
 
-		public override Dictionary<string, Biome> Biomes => _bioms;
+		public override Dictionary<string, Biome> Biomes => _biomes;
 
-		public override void Load()
+		public override async Task SaveAsync()
 		{
-			var prefsPath = Path.Combine(_mapsPath, "Prefabs/Biomes/");
-			var files = Directory.GetFiles(prefsPath, "*.json");
-			foreach (var file in files)
+			var biomes = new Biomes
 			{
-				var bioms = JsonConvert.DeserializeObject<Biomes>(File.ReadAllText(file));
-				if (bioms != null)
-				{
-					var fileName = new FileInfo(file).Name;
+				Items = Biomes.Values.ToList(),
+			};
 
-					foreach(var item in bioms.Items)
-					{
-						if (_bioms.ContainsKey(item.Name)) 
-						{
-							_bioms[item.Name] = item;
-						}
-						else
-						{
-							_bioms.TryAdd(item.Name, item);
-						}
-					}
+			var asText = JsonConvert.SerializeObject(biomes);
+			await File.WriteAllTextAsync(_biomesPath, asText);
+		}
+
+		public override async Task LoadAsync()
+		{
+			var bioms = JsonConvert.DeserializeObject<Biomes>(await File.ReadAllTextAsync(_biomesPath));
+			if (bioms?.Items == null)
+			{
+				return;
+			}
+
+			var fileName = new FileInfo(_biomesPath).Name;
+
+			foreach (var item in bioms.Items)
+			{
+				if (_biomes.ContainsKey(item.Name))
+				{
+					_biomes[item.Name] = item;
+				}
+				else
+				{
+					_biomes.TryAdd(item.Name, item);
 				}
 			}
 		}

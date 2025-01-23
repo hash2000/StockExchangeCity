@@ -7,7 +7,7 @@
 		/// <summary>
 		/// высота
 		/// </summary>
-		public Range Height { get; set; }
+		public Range Height { get; set; } 
 
 		/// <summary>
 		/// температура
@@ -23,10 +23,5 @@
 		/// цвет
 		/// </summary>
 		public string Color { get; set; }
-
-		public override string ToString()
-		{
-			return Name;
-		}
 	}
 }
