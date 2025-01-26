@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using StockExchangeCity.GameEntities.DataProviders;
+using StockExchangeCity.GameEntities.DataProviders.Abstractions;
+using StockExchangeCity.GameEntities.DataProviders.Biomes;
+using StockExchangeCity.GameEntities.DataProviders.Maps;
 
-namespace StockExchangeCity.GameEntities
+namespace StockExchangeCity.GameEntities.DataProviders
 {
 	public static class GameEntitiesModdleware
 	{
@@ -12,4 +14,5 @@ namespace StockExchangeCity.GameEntities
 			return services;
 		}
 	}
+
 }

@@ -2,7 +2,7 @@
 
 namespace StockExchangeCity.UI
 {
-	internal static class GameUIModdleware
+	public static class GameUIModdleware
 	{
 		public static IServiceCollection UseGameUI(this IServiceCollection services, string dataPath)
 		{

@@ -11,6 +11,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\StockExchangeCity.CurrentHost\StockExchangeCity.CurrentHost.csproj" />
 		<ProjectReference Include="..\StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj" />
 		<ProjectReference Include="..\StockExchangeCity.UI\StockExchangeCity.UI.csproj" />
 	</ItemGroup>

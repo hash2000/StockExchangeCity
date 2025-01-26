@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using StockExchangeCity.GameEntities;
+using StockExchangeCity.CurrentHost.Logger;
+using StockExchangeCity.GameEntities.DataProviders;
 using StockExchangeCity.GameUsers;
-using StockExchangeCity.UI.Logger;
+using StockExchangeCity.UI;
 
-namespace StockExchangeCity.UI.HostBuilder
+namespace StockExchangeCity.CurrentHost.HostBuilder
 {
 	public static class GameHostBuilder
 	{
@@ -21,7 +22,7 @@ namespace StockExchangeCity.UI.HostBuilder
 			return Host.CreateDefaultBuilder()
 				.ConfigureServices((context, services) =>
 				{
-					services.AddSingleton(provider => _logger.Value);					
+					services.AddSingleton(provider => _logger.Value);
 					services.AddSingleton<FormLog>();
 					services.UseMapLoader(dataPath);
 					services.UseGameUsers(dataPath);
@@ -32,4 +33,5 @@ namespace StockExchangeCity.UI.HostBuilder
 		}
 
 	}
+
 }

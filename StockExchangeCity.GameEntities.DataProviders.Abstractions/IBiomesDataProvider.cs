@@ -1,7 +1,7 @@
 ﻿using StockExchangeCity.GameEntities.Map;
 using Range = StockExchangeCity.GameEntities.Map.Range;
 
-namespace StockExchangeCity.GameEntities
+namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 {
 	public interface IBiomesDataProvider
 	{

@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 using OpenTelemetry;
 using OpenTelemetry.Logs;
+using StockExchangeCity.UI;
 
-namespace StockExchangeCity.UI.Logger
+namespace StockExchangeCity.CurrentHost.Logger
 {
-	internal class LoggerProcessorForm : BaseProcessor<LogRecord>
+	public class LoggerProcessorForm : BaseProcessor<LogRecord>
 	{
 		private readonly ILogger _logger;
 		private readonly FormLog _formLog;

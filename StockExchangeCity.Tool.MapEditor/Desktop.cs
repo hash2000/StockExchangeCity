@@ -1,6 +1,7 @@
-using StockExchangeCity.GameEntities;
+using StockExchangeCity.GameEntities.DataProviders.Abstractions;
 using StockExchangeCity.GameEntities.Map;
 using StockExchangeCity.Tool.MapEditor.ViewModels;
+using StockExchangeCity.UI;
 
 namespace StockExchangeCity.Tool.MapEditor
 {
@@ -8,13 +9,30 @@ namespace StockExchangeCity.Tool.MapEditor
 	{
 		private readonly IServiceProvider _serviceProvider;
 		private readonly IBiomesDataProvider _biomsDataProvider;
+		private readonly PanelWorldMap _panelWorldMap;
+		private readonly List<Control> _propertiesControls;
 
-		public Desktop(IServiceProvider serviceProvider, IBiomesDataProvider biomsDataProvider)
+		public Desktop(IServiceProvider serviceProvider,
+			IBiomesDataProvider biomsDataProvider,
+			PanelWorldMap panelWorldMap)
 		{
 			InitializeComponent();
 
 			_serviceProvider = serviceProvider;
 			_biomsDataProvider = biomsDataProvider;
+			_panelWorldMap = panelWorldMap;
+
+			_propertiesControls = new List<Control>
+			{
+				TxtColor,
+				TxtHeightMin,
+				TxtHeightMax,
+				TxtTempMin,
+				TxtTempMax,
+				TxtHumedityMin,
+				TxtHumedityMax,
+				PanelBiomeColor,
+			};
 		}
 
 		private void ApplyBiomeValue(TextBox textBox, Action<Biome, float> action)
@@ -29,6 +47,7 @@ namespace StockExchangeCity.Tool.MapEditor
 			if (float.TryParse(textBox.Text, out var value))
 			{
 				action(biome, value);
+				textBox.BackColor = SystemColors.Control;
 			}
 			else
 			{
@@ -38,14 +57,16 @@ namespace StockExchangeCity.Tool.MapEditor
 
 		private void EnableProperties(bool enable)
 		{
-			TxtColor.Enabled = enable;
-			TxtHeightMin.Enabled = enable;
-			TxtHeightMax.Enabled = enable;
-			TxtTempMin.Enabled = enable;
-			TxtTempMax.Enabled = enable;
-			TxtHumedityMin.Enabled = enable;
-			TxtHumedityMax.Enabled = enable;
-			PanelBiomeColor.Enabled = enable;
+			_propertiesControls.ForEach(x => x.Enabled = enable);
+		}
+
+		private void RestoreProperties()
+		{
+			_propertiesControls.ForEach(x =>
+			{
+				x.BackColor = SystemColors.Control;
+				x.Text = string.Empty;
+			});
 		}
 
 		private void ReloadBiomes()
@@ -53,6 +74,7 @@ namespace StockExchangeCity.Tool.MapEditor
 			Task.Run(_biomsDataProvider.LoadAsync).GetAwaiter().GetResult();
 
 			EnableProperties(false);
+			RestoreProperties();
 			ListBiomes.Items.Clear();
 
 			var biomes = _biomsDataProvider.Biomes;
@@ -70,6 +92,16 @@ namespace StockExchangeCity.Tool.MapEditor
 		private void Desktop_Load(object sender, EventArgs e)
 		{
 			ReloadBiomes();
+
+			_panelWorldMap.Dock = DockStyle.Fill;
+			_panelWorldMap.BorderStyle = BorderStyle.FixedSingle;
+			_panelWorldMap.AutoScroll = false;
+			_panelWorldMap.Margin = new Padding
+			{
+				All = 5
+			};
+
+			SplitContainerMapGen.Panel1.Controls.Add(_panelWorldMap);
 		}
 
 		private void ListBiomes_SelectedIndexChanged(object sender, EventArgs e)
@@ -162,5 +194,23 @@ namespace StockExchangeCity.Tool.MapEditor
 			Task.Run(_biomsDataProvider.SaveAsync).GetAwaiter().GetResult();
 			ReloadBiomes();
 		}
+		private void BtnLoadBiomes_Click(object sender, EventArgs e)
+		{
+			var result = MessageBox.Show("Вы действительно хотите восстановить предыдущие значения?", "Восстановить?",
+				MessageBoxButtons.OKCancel);
+			if (result != DialogResult.OK)
+			{
+				return;
+			}
+
+			ReloadBiomes();
+		}
+
+		private void BtnGenerateMap_Click(object sender, EventArgs e)
+		{
+
+		}
+
+
 	}
 }

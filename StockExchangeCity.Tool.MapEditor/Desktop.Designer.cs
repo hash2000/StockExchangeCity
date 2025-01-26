@@ -31,8 +31,11 @@
 			TabbarEditor = new TabControl();
 			TabMapEditor = new TabPage();
 			SplitContainerMapGen = new SplitContainer();
+			panel3 = new Panel();
+			BtnGenerateMap = new Button();
 			ListBiomes = new ListBox();
 			panel2 = new Panel();
+			BtnLoadBiomes = new Button();
 			BtnSaveBiomes = new Button();
 			panel1 = new Panel();
 			label5 = new Label();
@@ -54,8 +57,10 @@
 			TabbarEditor.SuspendLayout();
 			TabMapEditor.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)SplitContainerMapGen).BeginInit();
+			SplitContainerMapGen.Panel1.SuspendLayout();
 			SplitContainerMapGen.Panel2.SuspendLayout();
 			SplitContainerMapGen.SuspendLayout();
+			panel3.SuspendLayout();
 			panel2.SuspendLayout();
 			panel1.SuspendLayout();
 			SuspendLayout();
@@ -91,6 +96,10 @@
 			SplitContainerMapGen.Margin = new Padding(3, 2, 3, 2);
 			SplitContainerMapGen.Name = "SplitContainerMapGen";
 			// 
+			// SplitContainerMapGen.Panel1
+			// 
+			SplitContainerMapGen.Panel1.Controls.Add(panel3);
+			// 
 			// SplitContainerMapGen.Panel2
 			// 
 			SplitContainerMapGen.Panel2.Controls.Add(ListBiomes);
@@ -100,6 +109,24 @@
 			SplitContainerMapGen.SplitterDistance = 895;
 			SplitContainerMapGen.SplitterWidth = 5;
 			SplitContainerMapGen.TabIndex = 0;
+			// 
+			// panel3
+			// 
+			panel3.Controls.Add(BtnGenerateMap);
+			panel3.Dock = DockStyle.Top;
+			panel3.Location = new Point(0, 0);
+			panel3.Name = "panel3";
+			panel3.Size = new Size(895, 35);
+			panel3.TabIndex = 0;
+			// 
+			// BtnGenerateMap
+			// 
+			BtnGenerateMap.Location = new Point(5, 4);
+			BtnGenerateMap.Name = "BtnGenerateMap";
+			BtnGenerateMap.Size = new Size(137, 26);
+			BtnGenerateMap.TabIndex = 2;
+			BtnGenerateMap.Text = "Генерировать карту";
+			BtnGenerateMap.UseVisualStyleBackColor = true;
 			// 
 			// ListBiomes
 			// 
@@ -117,6 +144,7 @@
 			// 
 			// panel2
 			// 
+			panel2.Controls.Add(BtnLoadBiomes);
 			panel2.Controls.Add(BtnSaveBiomes);
 			panel2.Dock = DockStyle.Bottom;
 			panel2.Location = new Point(0, 442);
@@ -124,9 +152,19 @@
 			panel2.Size = new Size(326, 37);
 			panel2.TabIndex = 3;
 			// 
+			// BtnLoadBiomes
+			// 
+			BtnLoadBiomes.Location = new Point(115, 5);
+			BtnLoadBiomes.Name = "BtnLoadBiomes";
+			BtnLoadBiomes.Size = new Size(97, 26);
+			BtnLoadBiomes.TabIndex = 1;
+			BtnLoadBiomes.Text = "Загрузить";
+			BtnLoadBiomes.UseVisualStyleBackColor = true;
+			BtnLoadBiomes.Click += BtnLoadBiomes_Click;
+			// 
 			// BtnSaveBiomes
 			// 
-			BtnSaveBiomes.Location = new Point(3, 5);
+			BtnSaveBiomes.Location = new Point(224, 5);
 			BtnSaveBiomes.Name = "BtnSaveBiomes";
 			BtnSaveBiomes.Size = new Size(97, 26);
 			BtnSaveBiomes.TabIndex = 0;
@@ -319,9 +357,11 @@
 			Load += Desktop_Load;
 			TabbarEditor.ResumeLayout(false);
 			TabMapEditor.ResumeLayout(false);
+			SplitContainerMapGen.Panel1.ResumeLayout(false);
 			SplitContainerMapGen.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)SplitContainerMapGen).EndInit();
 			SplitContainerMapGen.ResumeLayout(false);
+			panel3.ResumeLayout(false);
 			panel2.ResumeLayout(false);
 			panel1.ResumeLayout(false);
 			panel1.PerformLayout();
@@ -353,5 +393,8 @@
 		private ListBox ListBiomes;
 		private Panel panel2;
 		private Button BtnSaveBiomes;
+		private Panel panel3;
+		private Button BtnGenerateMap;
+		private Button BtnLoadBiomes;
 	}
 }

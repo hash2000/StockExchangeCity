@@ -1,6 +1,6 @@
 ﻿namespace StockExchangeCity.GameEntities.Map
 {
-	public class Biomes
+	public class BiomesList
 	{
 		public List<Biome>? Items { get; set; }
 	}

@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry.Resources;
+using StockExchangeCity.UI;
 
-namespace StockExchangeCity.UI.Logger
+namespace StockExchangeCity.CurrentHost.Logger
 {
 	public static class LoggerBuilder
 	{
@@ -31,4 +32,5 @@ namespace StockExchangeCity.UI.Logger
 
 
 	}
+
 }

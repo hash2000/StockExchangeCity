@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using StockExchangeCity.GameEntities;
+using StockExchangeCity.GameEntities.DataProviders.Abstractions;
 using StockExchangeCity.GameUsers;
 
 namespace StockExchangeCity

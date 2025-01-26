@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using StockExchangeCity.UI.HostBuilder;
+using StockExchangeCity.CurrentHost.HostBuilder;
 
 namespace StockExchangeCity.Tool.MapEditor
 {

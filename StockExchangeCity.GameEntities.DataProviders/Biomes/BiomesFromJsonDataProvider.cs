@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 using StockExchangeCity.GameEntities.Map;
 
-namespace StockExchangeCity.GameEntities.DataProviders
+namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 {
 	internal class BiomesFromJsonDataProvider : BaseBiomesDataProvider
 	{
 		private readonly string _mapsPath;
 		private readonly string _biomesPath;
-
 		private readonly Dictionary<string, Biome> _biomes = new Dictionary<string, Biome>();
 
 		public BiomesFromJsonDataProvider(string mapsPath)
@@ -20,7 +19,7 @@ namespace StockExchangeCity.GameEntities.DataProviders
 
 		public override async Task SaveAsync()
 		{
-			var biomes = new Biomes
+			var biomes = new BiomesList
 			{
 				Items = Biomes.Values.ToList(),
 			};
@@ -31,7 +30,7 @@ namespace StockExchangeCity.GameEntities.DataProviders
 
 		public override async Task LoadAsync()
 		{
-			var bioms = JsonConvert.DeserializeObject<Biomes>(await File.ReadAllTextAsync(_biomesPath));
+			var bioms = JsonConvert.DeserializeObject<BiomesList>(await File.ReadAllTextAsync(_biomesPath));
 			if (bioms?.Items == null)
 			{
 				return;
