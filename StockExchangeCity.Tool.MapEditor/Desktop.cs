@@ -29,8 +29,8 @@ namespace StockExchangeCity.Tool.MapEditor
 				TxtHeightMax,
 				TxtTempMin,
 				TxtTempMax,
-				TxtHumedityMin,
-				TxtHumedityMax,
+				TxtHumidityMin,
+				TxtHumidityMax,
 				PanelBiomeColor,
 			};
 		}
@@ -115,8 +115,8 @@ namespace StockExchangeCity.Tool.MapEditor
 			TxtHeightMax.Text = biome.Height.Max.ToString();
 			TxtTempMin.Text = biome.Temperature.Min.ToString();
 			TxtTempMax.Text = biome.Temperature.Max.ToString();
-			TxtHumedityMin.Text = biome.Humidity.Min.ToString();
-			TxtHumedityMax.Text = biome.Humidity.Max.ToString();
+			TxtHumidityMin.Text = biome.Humidity.Min.ToString();
+			TxtHumidityMax.Text = biome.Humidity.Max.ToString();
 			ColorBiome.Color = ColorTranslator.FromHtml(biome.Color);
 			PanelBiomeColor.BackColor = ColorBiome.Color;
 
@@ -152,14 +152,14 @@ namespace StockExchangeCity.Tool.MapEditor
 			ApplyBiomeValue(TxtTempMax, (biome, value) => biome.Temperature.Max = value);
 		}
 
-		private void TxtHumedityMin_TextChanged(object sender, EventArgs e)
+		private void TxtHumidityMin_TextChanged(object sender, EventArgs e)
 		{
-			ApplyBiomeValue(TxtHumedityMin, (biome, value) => biome.Humidity.Min = value);
+			ApplyBiomeValue(TxtHumidityMin, (biome, value) => biome.Humidity.Min = value);
 		}
 
-		private void TxtHumedityMax_TextChanged(object sender, EventArgs e)
+		private void TxtHumidityMax_TextChanged(object sender, EventArgs e)
 		{
-			ApplyBiomeValue(TxtHumedityMax, (biome, value) => biome.Humidity.Max = value);
+			ApplyBiomeValue(TxtHumidityMax, (biome, value) => biome.Humidity.Max = value);
 		}
 
 		private void TxtColor_TextChanged(object sender, EventArgs e)
@@ -210,7 +210,6 @@ namespace StockExchangeCity.Tool.MapEditor
 		{
 
 		}
-
 
 	}
 }

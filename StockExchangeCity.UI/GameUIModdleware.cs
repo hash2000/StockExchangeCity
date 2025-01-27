@@ -10,7 +10,6 @@ namespace StockExchangeCity.UI
 
 			services.AddTransient<PanelWorldMap>();
 			services.AddTransient(sb => new PanelImagesView(dataPath));
-			services.AddTransient(sb => new PanelImagesView(dataPath));
 			return services;
 		}
 

@@ -7,6 +7,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 	internal abstract class BaseBiomesDataProvider : IBiomesDataProvider
 	{
 		public abstract Dictionary<string, Biome> Biomes { get; }
+
 		public abstract Task LoadAsync();
 
 		public abstract Task SaveAsync();
@@ -29,6 +30,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 				{
 					continue;
 				}
+
 				return biome.Value;
 			}
 			return null;

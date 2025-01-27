@@ -43,8 +43,8 @@
 			textBox2 = new TextBox();
 			PanelBiomeColor = new Panel();
 			TxtColor = new TextBox();
-			TxtHumedityMax = new TextBox();
-			TxtHumedityMin = new TextBox();
+			TxtHumidityMax = new TextBox();
+			TxtHumidityMin = new TextBox();
 			TxtTempMax = new TextBox();
 			TxtTempMin = new TextBox();
 			TxtHeightMax = new TextBox();
@@ -179,8 +179,8 @@
 			panel1.Controls.Add(textBox2);
 			panel1.Controls.Add(PanelBiomeColor);
 			panel1.Controls.Add(TxtColor);
-			panel1.Controls.Add(TxtHumedityMax);
-			panel1.Controls.Add(TxtHumedityMin);
+			panel1.Controls.Add(TxtHumidityMax);
+			panel1.Controls.Add(TxtHumidityMin);
 			panel1.Controls.Add(TxtTempMax);
 			panel1.Controls.Add(TxtTempMin);
 			panel1.Controls.Add(TxtHeightMax);
@@ -248,25 +248,25 @@
 			TxtColor.TabIndex = 10;
 			TxtColor.TextChanged += TxtColor_TextChanged;
 			// 
-			// TxtHumedityMax
+			// TxtHumidityMax
 			// 
-			TxtHumedityMax.BackColor = SystemColors.ControlLight;
-			TxtHumedityMax.Location = new Point(208, 52);
-			TxtHumedityMax.Margin = new Padding(3, 2, 3, 2);
-			TxtHumedityMax.Name = "TxtHumedityMax";
-			TxtHumedityMax.Size = new Size(110, 23);
-			TxtHumedityMax.TabIndex = 9;
-			TxtHumedityMax.TextChanged += TxtHumedityMax_TextChanged;
+			TxtHumidityMax.BackColor = SystemColors.ControlLight;
+			TxtHumidityMax.Location = new Point(208, 52);
+			TxtHumidityMax.Margin = new Padding(3, 2, 3, 2);
+			TxtHumidityMax.Name = "TxtHumidityMax";
+			TxtHumidityMax.Size = new Size(110, 23);
+			TxtHumidityMax.TabIndex = 9;
+			TxtHumidityMax.TextChanged += TxtHumidityMax_TextChanged;
 			// 
-			// TxtHumedityMin
+			// TxtHumidityMin
 			// 
-			TxtHumedityMin.BackColor = SystemColors.ControlLight;
-			TxtHumedityMin.Location = new Point(95, 52);
-			TxtHumedityMin.Margin = new Padding(3, 2, 3, 2);
-			TxtHumedityMin.Name = "TxtHumedityMin";
-			TxtHumedityMin.Size = new Size(110, 23);
-			TxtHumedityMin.TabIndex = 8;
-			TxtHumedityMin.TextChanged += TxtHumedityMin_TextChanged;
+			TxtHumidityMin.BackColor = SystemColors.ControlLight;
+			TxtHumidityMin.Location = new Point(95, 52);
+			TxtHumidityMin.Margin = new Padding(3, 2, 3, 2);
+			TxtHumidityMin.Name = "TxtHumidityMin";
+			TxtHumidityMin.Size = new Size(110, 23);
+			TxtHumidityMin.TabIndex = 8;
+			TxtHumidityMin.TextChanged += TxtHumidityMin_TextChanged;
 			// 
 			// TxtTempMax
 			// 
@@ -379,8 +379,8 @@
 		private Label label2;
 		private Label label4;
 		private TextBox TxtColor;
-		private TextBox TxtHumedityMax;
-		private TextBox TxtHumedityMin;
+		private TextBox TxtHumidityMax;
+		private TextBox TxtHumidityMin;
 		private TextBox TxtTempMax;
 		private TextBox TxtTempMin;
 		private TextBox TxtHeightMax;
