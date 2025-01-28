@@ -15,7 +15,7 @@ namespace StockExchangeCity.Tool.MapEditor.ViewModels
 
 		public Error HasError { get; set; } = new Error();
 
-		public Biome Biome { get; set; }
+		public Biome? Biome { get; set; }
 
 		public string Name { get; set; }
 

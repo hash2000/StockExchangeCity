@@ -13,36 +13,27 @@ namespace StockExchangeCity.UI
 		{
 			if (!Visible)
 			{
-				Invoke((MethodInvoker)delegate
-				{
-					Show();
-				});
+				Show();
 			}
 
-			TextLog.Invoke((MethodInvoker)delegate
+			TextLog.Text += $"[{logLevel}]: ";
+
+			if (!string.IsNullOrEmpty(msg))
 			{
-				TextLog.Text += $"[{logLevel}]: ";
+				TextLog.Text += msg + " ";
+			}
 
-				if (!string.IsNullOrEmpty(msg))
-				{
-					TextLog.Text += msg + " ";
-				}
+			if (exception != null)
+			{
+				TextLog.Text += $"<{exception}>";
+			}
 
-				if (exception != null)
-				{
-					TextLog.Text += $"<{exception}>";
-				}
-
-				TextLog.Text += "\r\n";
-			});
+			TextLog.Text += "\r\n";
 		}
 
 		private void BtClear_Click(object sender, EventArgs e)
 		{
-			TextLog.Invoke((MethodInvoker)delegate
-			{
-				TextLog.Clear();
-			});
+			TextLog.Clear();
 		}
 
 		private void FormLog_FormClosing(object sender, FormClosingEventArgs e)

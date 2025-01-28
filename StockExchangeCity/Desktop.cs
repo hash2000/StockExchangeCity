@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using StockExchangeCity.CurrentHost.HostBuilder;
 using StockExchangeCity.Modules.Char;
 using StockExchangeCity.UI;
 
@@ -19,16 +20,9 @@ namespace StockExchangeCity
 		{
 			TabbarGame.SelectedTab = TabGameMap;
 
-			LoadLog();
+			GameHostBuilder.AddLog();
 			LoadChars();
 			LoadMaps();
-		}
-
-		private void LoadLog()
-		{
-			var logform = _serviceProvider.GetRequiredService<FormLog>();
-			logform.Show();
-			logform.Hide();
 		}
 
 		private void LoadChars()

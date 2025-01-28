@@ -19,7 +19,8 @@ namespace StockExchangeCity.CurrentHost.Logger
 		public override void OnEnd(LogRecord data)
 		{
 			_logger.Log(data.LogLevel, data.Exception, data.Body);
-			_formLog.AppendLog(data.LogLevel, data.Exception, data.Body);
+			// TODO: это сильно медленно, нужно както ускорить
+			//_formLog.AppendLog(data.LogLevel, data.Exception, data.Body);
 			base.OnEnd(data);
 		}
 	}

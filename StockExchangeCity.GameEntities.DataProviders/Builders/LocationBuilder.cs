@@ -1,9 +1,10 @@
-﻿using StockExchangeCity.GameEntities.DataProviders.Abstractions;
+﻿using Microsoft.Extensions.ObjectPool;
 using StockExchangeCity.GameEntities.Map;
+using System.Buffers;
 
-namespace StockExchangeCity.GameEntities.DataProviders.Biomes.Builders
+namespace StockExchangeCity.GameEntities.DataProviders.Builders
 {
-	internal class BiomesMapBuilder
+	public class LocationBuilder
 	{
 		public float TemperatureIncrement { get; set; } = 0.3f;
 		public int TemperatureHeightMax { get; set; } = 140;
@@ -16,12 +17,8 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes.Builders
 		public float HumidityHeight { get; set; } = 0.2f;
 		public float HumidityScale { get; set; } = 0.003f;
 
-		public Biome[,] BiomesMap { get; set; }
-
-
-		IBiomesDataProvider _biomesDataProvider;
-
-		Perlin2D _noiseGen;
+		private readonly Perlin2D _noiseGen;
+		private readonly ObjectPool<Location> _locations;
 
 		private int _xPos = 0;
 		private int _yPos = 0;
@@ -32,42 +29,46 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes.Builders
 		private float _fluctuationMax = 0f;
 		private int HeightMax = 255;
 
-
-		public BiomesMapBuilder(IBiomesDataProvider biomesDataProvider, int width, int height, int speed = 70)
+		public LocationBuilder(ObjectPool<Location> locations, int x, int y, int width, int height, int speed = 70)
 		{
 			_noiseGen = new Perlin2D(speed);
-			_biomesDataProvider = biomesDataProvider;
+			_locations = locations;
+			_xPos = x;
+			_yPos = y;
 			_mapWidth = width;
 			_mapHeight = height;
-			BiomesMap = new Biome[width, height];
 		}
 
-		public void Build()
+		public void Build(Action<Location> action)
 		{
 			for (int x = 0; x < _mapWidth; x++)
 			{
-				for (int y = 9; y < _mapHeight; y++)
+				for (int y = 0; y < _mapHeight; y++)
 				{
+					int worldX = x + _xPos;
+					int worldY = y + _yPos;
+
 					float humidityNoise = _noiseGen.Noise(
-						(x + _xPos) * HumidityScale,
-						(y + _yPos) * HumidityScale * 100 - 50);
+						worldX * HumidityScale,
+						worldX * HumidityScale * 100 - 50);
 
 					float highNoise = _noiseGen.Noise(
-						(x + _xPos) * _scale,
-						(y + _yPos) * _scale);
+						worldX * _scale,
+						worldX * _scale);
 
-					int height = (int)Math.Round(Map(highNoise, 0f, 1f, 0f, (float)HeightMax));
-					float temperature = CalcTemperature(x + _xPos, y + _yPos, height);
-					float humidity = CalcHumidity(x + _xPos, y + _yPos, temperature);
+					int height = (int)Math.Round(Map(highNoise, 0f, 1f, 0f, HeightMax));
+					float temperature = CalcTemperature(worldX, worldX, height);
+					float humidity = CalcHumidity(worldX, worldX, temperature);
 
-					var biome = _biomesDataProvider.Find(height, temperature, humidity);
-					if (biome == null)
-					{
-						// TODO: error
-						continue;
-					}
+					var location = _locations.Get();
 
-					BiomesMap[x, y] = biome;
+					location.Height = height;
+					location.Temperature = temperature;
+					location.Humidity = humidity;
+					location.X = worldX;
+					location.Y = worldY;
+
+					action(location);
 				}
 			}
 		}

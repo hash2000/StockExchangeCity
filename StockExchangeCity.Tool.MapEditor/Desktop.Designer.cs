@@ -127,6 +127,7 @@
 			BtnGenerateMap.TabIndex = 2;
 			BtnGenerateMap.Text = "Генерировать карту";
 			BtnGenerateMap.UseVisualStyleBackColor = true;
+			BtnGenerateMap.Click += BtnGenerateMap_Click;
 			// 
 			// ListBiomes
 			// 

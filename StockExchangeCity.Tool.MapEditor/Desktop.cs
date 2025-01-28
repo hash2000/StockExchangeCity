@@ -1,3 +1,4 @@
+using StockExchangeCity.CurrentHost.HostBuilder;
 using StockExchangeCity.GameEntities.DataProviders.Abstractions;
 using StockExchangeCity.GameEntities.Map;
 using StockExchangeCity.Tool.MapEditor.ViewModels;
@@ -69,9 +70,9 @@ namespace StockExchangeCity.Tool.MapEditor
 			});
 		}
 
-		private void ReloadBiomes()
+		private async void ReloadBiomes()
 		{
-			Task.Run(_biomsDataProvider.LoadAsync).GetAwaiter().GetResult();
+			await _biomsDataProvider.LoadAsync();
 
 			EnableProperties(false);
 			RestoreProperties();
@@ -91,6 +92,8 @@ namespace StockExchangeCity.Tool.MapEditor
 
 		private void Desktop_Load(object sender, EventArgs e)
 		{
+			GameHostBuilder.AddLog();
+
 			ReloadBiomes();
 
 			_panelWorldMap.Dock = DockStyle.Fill;
@@ -182,7 +185,7 @@ namespace StockExchangeCity.Tool.MapEditor
 			}
 		}
 
-		private void BtnSaveBiomes_Click(object sender, EventArgs e)
+		private async void BtnSaveBiomes_Click(object sender, EventArgs e)
 		{
 			var result = MessageBox.Show("Вы действительно хотите сохранить изменения?", "Сохранить?",
 				MessageBoxButtons.OKCancel);
@@ -191,7 +194,7 @@ namespace StockExchangeCity.Tool.MapEditor
 				return;
 			}
 
-			Task.Run(_biomsDataProvider.SaveAsync).GetAwaiter().GetResult();
+			await _biomsDataProvider.SaveAsync();
 			ReloadBiomes();
 		}
 		private void BtnLoadBiomes_Click(object sender, EventArgs e)
@@ -206,9 +209,9 @@ namespace StockExchangeCity.Tool.MapEditor
 			ReloadBiomes();
 		}
 
-		private void BtnGenerateMap_Click(object sender, EventArgs e)
+		private async void BtnGenerateMap_Click(object sender, EventArgs e)
 		{
-
+			await _panelWorldMap.GenerateLocation(0, 0, 10, 10);
 		}
 
 	}

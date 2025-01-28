@@ -8,6 +8,6 @@ namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 
 		Task SaveAsync();
 
-		Task Generate(List<Biome> biomes);
+		Task<List<Area>> GenerateAsync(int x, int y, int width, int height, int speed = 70);
 	}
 }

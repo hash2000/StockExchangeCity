@@ -1,4 +1,4 @@
-﻿namespace StockExchangeCity.GameEntities.DataProviders.Biomes.Builders
+﻿namespace StockExchangeCity.GameEntities.DataProviders.Builders
 {
     internal class Perlin2D
     {
@@ -11,25 +11,25 @@
             rand.NextBytes(permutationTable);
         }
 
-		public float Noise(float fx, float fy, int octaves, float persistence = 0.5f)
-		{
-			float amplitude = 1;
-			float max = 0;
-			float result = 0;
+        public float Noise(float fx, float fy, int octaves, float persistence = 0.5f)
+        {
+            float amplitude = 1;
+            float max = 0;
+            float result = 0;
 
-			while (octaves-- > 0)
-			{
-				max += amplitude;
-				result += Noise(fx, fy) * amplitude;
-				amplitude *= persistence;
-				fx *= 2;
-				fy *= 2;
-			}
+            while (octaves-- > 0)
+            {
+                max += amplitude;
+                result += Noise(fx, fy) * amplitude;
+                amplitude *= persistence;
+                fx *= 2;
+                fy *= 2;
+            }
 
-			return result / max;
-		}
+            return result / max;
+        }
 
-		private float[] GetPseudoRandomGradientVector(int x, int y)
+        private float[] GetPseudoRandomGradientVector(int x, int y)
         {
             int v = (int)((x * 1836311903 ^ y * 2971215073 + 4807526976) & 1023);
             v = permutationTable[v] & 3;

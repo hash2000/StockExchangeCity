@@ -19,28 +19,22 @@ namespace StockExchangeCity
 			_logger = logger;
 		}
 
-		private void BtConnect_Click(object sender, EventArgs e)
+		private async void BtConnect_Click(object sender, EventArgs e)
 		{
-			Task.Run(async () =>
+			var connectResult = await _users.ConnectAsync(TextToken.Text);
+			if (!connectResult)
 			{
-				var connectResult = await _users.ConnectAsync(TextToken.Text);
-				if (!connectResult)
-				{
-					return;
-				}
+				return;
+			}
 
-				await _mapLoader.LoadAsync();
+			await _mapLoader.LoadAsync();
 
-				ConnectionCompete();
-			});
+			ConnectionCompete();
 		}
 
 		private void ConnectionCompete()
 		{
-			Invoke((MethodInvoker)delegate
-			{
-				Close();
-			});
+			Close();
 
 			_logger.LogInformation("Подключение успешно завершено");
 		}

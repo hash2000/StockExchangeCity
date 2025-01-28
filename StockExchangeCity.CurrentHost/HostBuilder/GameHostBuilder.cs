@@ -32,6 +32,18 @@ namespace StockExchangeCity.CurrentHost.HostBuilder
 				});
 		}
 
+		public static void AddLog()
+		{
+			var logform = ServiceProvider?.GetRequiredService<FormLog>();
+			if (logform == null)
+			{
+				return;
+			}
+
+			logform.Show();
+			logform.Hide();
+		}
+
 	}
 
 }
