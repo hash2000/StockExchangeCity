@@ -28,7 +28,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 			await File.WriteAllTextAsync(_biomesPath, asText);
 		}
 
-		public override async Task LoadAsync()
+		public override async Task LoadInternalAsync()
 		{
 			var bioms = JsonConvert.DeserializeObject<BiomesList>(await File.ReadAllTextAsync(_biomesPath));
 			if (bioms?.Items == null)

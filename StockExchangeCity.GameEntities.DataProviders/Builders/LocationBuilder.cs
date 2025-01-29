@@ -1,13 +1,11 @@
-﻿using Microsoft.Extensions.ObjectPool;
-using StockExchangeCity.GameEntities.Map;
-using System.Buffers;
+﻿using StockExchangeCity.GameEntities.Map;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Builders
 {
 	public class LocationBuilder
 	{
 		public float TemperatureIncrement { get; set; } = 0.3f;
-		public int TemperatureHeightMax { get; set; } = 140;
+		public int TemperatureHeightMax { get; set; } = 60;
 		public int TemperatureDefault { get; set; } = 20;
 		public float TemperatureScale { get; set; } = 0.001f;
 
@@ -18,7 +16,6 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 		public float HumidityScale { get; set; } = 0.003f;
 
 		private readonly Perlin2D _noiseGen;
-		private readonly ObjectPool<Location> _locations;
 
 		private int _xPos = 0;
 		private int _yPos = 0;
@@ -29,10 +26,9 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 		private float _fluctuationMax = 0f;
 		private int HeightMax = 255;
 
-		public LocationBuilder(ObjectPool<Location> locations, int x, int y, int width, int height, int speed = 70)
+		public LocationBuilder(int x, int y, int width, int height, int speed = 70)
 		{
 			_noiseGen = new Perlin2D(speed);
-			_locations = locations;
 			_xPos = x;
 			_yPos = y;
 			_mapWidth = width;
@@ -50,17 +46,17 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 
 					float humidityNoise = _noiseGen.Noise(
 						worldX * HumidityScale,
-						worldX * HumidityScale * 100 - 50);
+						worldY * HumidityScale * 100 - 50);
 
 					float highNoise = _noiseGen.Noise(
 						worldX * _scale,
-						worldX * _scale);
+						worldY * _scale);
 
 					int height = (int)Math.Round(Map(highNoise, 0f, 1f, 0f, HeightMax));
-					float temperature = CalcTemperature(worldX, worldX, height);
-					float humidity = CalcHumidity(worldX, worldX, temperature);
+					float temperature = CalcTemperature(worldX, worldY, height);
+					float humidity = CalcHumidity(worldX, worldY, temperature);
 
-					var location = _locations.Get();
+					var location = new Location();
 
 					location.Height = height;
 					location.Temperature = temperature;
@@ -84,9 +80,11 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 		{
 			var noise = _noiseGen.Noise(
 				x * TemperatureScale,
-				y * TemperatureScale) * 100 - 50;
-			return TemperatureDefault - Math.Abs(h - TemperatureHeightMax) *
+				y * TemperatureScale * TemperatureHeightMax);
+			var temperature = TemperatureDefault - Math.Abs(h - TemperatureHeightMax) *
 				TemperatureIncrement + noise;
+
+			return temperature;
 		}
 
 		private float CalcHumidity(int x, int y, float temp)

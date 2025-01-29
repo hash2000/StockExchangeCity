@@ -5,5 +5,7 @@
 		public Location Location { get; set; }
 
 		public Biome Biome { get; set; }
+
+		public Color Color { get; set; }
 	}
 }

@@ -8,31 +8,56 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 	{
 		public abstract Dictionary<string, Biome> Biomes { get; }
 
-		public abstract Task LoadAsync();
+		public abstract Task LoadInternalAsync();
 
 		public abstract Task SaveAsync();
 
+		public async Task LoadAsync()
+		{
+			await LoadInternalAsync();
+
+			_sortedBiomes.Clear();
+
+			foreach (var biome in Biomes.Values)
+			{
+				_sortedBiomes.Add(biome);
+			}
+		}
+
+		private SortedSet<Biome> _sortedBiomes = new SortedSet<Biome>(Comparer<Biome>.Create((x, y) =>
+		{
+			var temp = x.Temperature.Min.CompareTo(y.Temperature.Min);
+			if (temp != 0)
+			{
+				return temp;
+			}
+
+			var humidity = x.Humidity.Min.CompareTo(y.Humidity.Min);
+			if (humidity != 0)
+			{
+				return humidity;
+			}
+
+			return x.Height.Min.CompareTo(y.Height.Min);
+		}));
+
 		public Biome? Find(int height, float temperature, float humidity)
 		{
-			foreach (var biome in Biomes)
+			if(_sortedBiomes.Count == 0)
 			{
-				if (!biome.Value.Height.IsFits(height))
-				{
-					continue;
-				}
-
-				if (!biome.Value.Temperature.IsFits(temperature))
-				{
-					continue;
-				}
-
-				if (!biome.Value.Humidity.IsFits(humidity))
-				{
-					continue;
-				}
-
-				return biome.Value;
+				return null;
 			}
+
+			foreach(var biome in _sortedBiomes)
+			{
+				if(biome.Height.IsFits(height) &&
+					biome.Temperature.IsFits(temperature) && 
+					biome.Humidity.IsFits(humidity))
+				{
+					return biome;
+				}
+			}
+
 			return null;
 		}
 
