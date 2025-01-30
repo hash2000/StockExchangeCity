@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using StockExchangeCity.CurrentHost.HostBuilder;
+using StockExchangeCity.UI;
 
 namespace StockExchangeCity.Tool.MapEditor
 {
@@ -16,6 +17,8 @@ namespace StockExchangeCity.Tool.MapEditor
 			ApplicationConfiguration.Initialize();
 			var builder = GameHostBuilder.CreateHostBuilder(services =>
 			{
+				var dataPath = GameHostBuilder.GetDataPath();
+				services.UseGameUIDesign(dataPath);
 				services.AddTransient<Desktop>();
 			});
 

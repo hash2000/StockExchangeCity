@@ -14,11 +14,16 @@ namespace StockExchangeCity.CurrentHost.HostBuilder
 
 		private static readonly Lazy<ILogger> _logger = new Lazy<ILogger>(() => LoggerBuilder.CreateLogger(ServiceProvider));
 
-		public static IHostBuilder CreateHostBuilder(Action<IServiceCollection> serviceBuilder)
+		public static string GetDataPath()
 		{
 			var cwd = Directory.GetCurrentDirectory();
 			var dataPath = Path.Combine(cwd, "StockExchangeCity.Data");
+			return dataPath;
+		}
 
+		public static IHostBuilder CreateHostBuilder(Action<IServiceCollection> serviceBuilder)
+		{
+			var dataPath = GetDataPath();
 			return Host.CreateDefaultBuilder()
 				.ConfigureServices((context, services) =>
 				{

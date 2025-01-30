@@ -2,20 +2,20 @@ using StockExchangeCity.CurrentHost.HostBuilder;
 using StockExchangeCity.GameEntities.DataProviders.Abstractions;
 using StockExchangeCity.GameEntities.Map;
 using StockExchangeCity.Tool.MapEditor.ViewModels;
-using StockExchangeCity.UI;
+using StockExchangeCity.UI.WorldMap;
 
 namespace StockExchangeCity.Tool.MapEditor
 {
-	public partial class Desktop : Form
+    public partial class Desktop : Form
 	{
 		private readonly IServiceProvider _serviceProvider;
 		private readonly IBiomesDataProvider _biomsDataProvider;
-		private readonly PanelWorldMap _panelWorldMap;
+		private readonly PanelWorldMapDesign _panelWorldMap;
 		private readonly List<Control> _propertiesControls;
 
 		public Desktop(IServiceProvider serviceProvider,
 			IBiomesDataProvider biomsDataProvider,
-			PanelWorldMap panelWorldMap)
+			PanelWorldMapDesign panelWorldMap)
 		{
 			InitializeComponent();
 

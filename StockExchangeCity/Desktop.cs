@@ -2,10 +2,11 @@ using Microsoft.Extensions.DependencyInjection;
 using StockExchangeCity.CurrentHost.HostBuilder;
 using StockExchangeCity.Modules.Char;
 using StockExchangeCity.UI;
+using StockExchangeCity.UI.WorldMap;
 
 namespace StockExchangeCity
 {
-	public partial class Desktop : Form
+    public partial class Desktop : Form
 	{
 		private readonly IServiceProvider _serviceProvider;
 
@@ -33,9 +34,9 @@ namespace StockExchangeCity
 
 		private void LoadMaps()
 		{
-			var gameMap = _serviceProvider.GetRequiredService<PanelWorldMap>();
-			gameMap.Dock = DockStyle.Fill;
-			TabGameMap.Controls.Add(gameMap);
+			//var gameMap = _serviceProvider.GetRequiredService<PanelWorldMapDesign>();
+			//gameMap.Dock = DockStyle.Fill;
+			//TabGameMap.Controls.Add(gameMap);
 		}
 
 		private void button1_Click(object sender, EventArgs e)
