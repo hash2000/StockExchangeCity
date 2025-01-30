@@ -31,10 +31,16 @@ namespace StockExchangeCity.UI
 			Refresh();
 		}
 
-		public async Task GenerateLocation(int x, int y, int width, int height)
+		public async Task GenerateLocationAsync(int x, int y, int width, int height)
 		{
 			var area = await _mapsDataProvider.GenerateAsync(0, 0, 128, 128);
 			_areas.AddRange(area);
+			Refresh();
+		}
+
+		public void ClearAreas()
+		{ 
+			_areas.Clear();
 			Refresh();
 		}
 

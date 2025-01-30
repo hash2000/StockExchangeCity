@@ -211,8 +211,12 @@ namespace StockExchangeCity.Tool.MapEditor
 
 		private async void BtnGenerateMap_Click(object sender, EventArgs e)
 		{
-			await _panelWorldMap.GenerateLocation(0, 0, 10, 10);
+			await _panelWorldMap.GenerateLocationAsync(0, 0, 10, 10);
 		}
 
+		private void BtnClearMap_Click(object sender, EventArgs e)
+		{
+			_panelWorldMap.ClearAreas();
+		}
 	}
 }

@@ -54,6 +54,7 @@
 			label2 = new Label();
 			label1 = new Label();
 			ColorBiome = new ColorDialog();
+			BtnClearMap = new Button();
 			TabbarEditor.SuspendLayout();
 			TabMapEditor.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)SplitContainerMapGen).BeginInit();
@@ -112,6 +113,7 @@
 			// 
 			// panel3
 			// 
+			panel3.Controls.Add(BtnClearMap);
 			panel3.Controls.Add(BtnGenerateMap);
 			panel3.Dock = DockStyle.Top;
 			panel3.Location = new Point(0, 0);
@@ -123,9 +125,9 @@
 			// 
 			BtnGenerateMap.Location = new Point(5, 4);
 			BtnGenerateMap.Name = "BtnGenerateMap";
-			BtnGenerateMap.Size = new Size(137, 26);
+			BtnGenerateMap.Size = new Size(100, 26);
 			BtnGenerateMap.TabIndex = 2;
-			BtnGenerateMap.Text = "Генерировать карту";
+			BtnGenerateMap.Text = "Генерировать";
 			BtnGenerateMap.UseVisualStyleBackColor = true;
 			BtnGenerateMap.Click += BtnGenerateMap_Click;
 			// 
@@ -346,6 +348,16 @@
 			label1.TabIndex = 0;
 			label1.Text = "Высота";
 			// 
+			// BtnClearMap
+			// 
+			BtnClearMap.Location = new Point(111, 4);
+			BtnClearMap.Name = "BtnClearMap";
+			BtnClearMap.Size = new Size(100, 26);
+			BtnClearMap.TabIndex = 3;
+			BtnClearMap.Text = "Очистить";
+			BtnClearMap.UseVisualStyleBackColor = true;
+			BtnClearMap.Click += BtnClearMap_Click;
+			// 
 			// Desktop
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -397,5 +409,6 @@
 		private Panel panel3;
 		private Button BtnGenerateMap;
 		private Button BtnLoadBiomes;
+		private Button BtnClearMap;
 	}
 }
