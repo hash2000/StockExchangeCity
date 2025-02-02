@@ -41,7 +41,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 			return x.Height.Min.CompareTo(y.Height.Min);
 		}));
 
-		public Biome? Find(int height, float temperature, float humidity)
+		public Biome? Find(float height, float temperature, float humidity)
 		{
 			if(_sortedBiomes.Count == 0)
 			{

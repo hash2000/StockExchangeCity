@@ -13,6 +13,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 		private readonly IGameUsersRepository _users;
 		private readonly IBiomesDataProvider _biomes;
 		private readonly ArrayPool<Location> _locations;
+		private readonly LocationBuilder _locationBuilder = new LocationBuilder(70);
 
 		public MapsDataProvider(ILogger logger,
 			IGameUsersRepository users,
@@ -23,12 +24,21 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 			_biomes = biomes;
 		}
 
-		public async Task<List<Area>> GenerateAsync(int x, int y, int width, int height, int speed)
+		public async Task<List<Area>> GenerateAsync(RectangleF rectangle, int speed)
 		{
-			var builder = new LocationBuilder(x, y, width, height, speed);
-			var result = new List<Area>(width * height);
+			return await GenerateAsync(
+				rectangle.X,
+				rectangle.Y,
+				rectangle.Width,
+				rectangle.Height,
+				speed);
+		}
 
-			builder.Build((location) =>
+		public async Task<List<Area>> GenerateAsync(float x, float y, float width, float height, int speed)
+		{
+			var result = new List<Area>((int)Math.Round(width, 0) * (int)Math.Round(height));
+
+			_locationBuilder.Build(x, y, width, height, (location) =>
 			{
 				var biome = _biomes.Find(
 					location.Height,

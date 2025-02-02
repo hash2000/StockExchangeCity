@@ -32,11 +32,12 @@
 			TabMapEditor = new TabPage();
 			SplitContainerMapGen = new SplitContainer();
 			panel3 = new Panel();
+			BtnClearMap = new Button();
 			BtnGenerateMap = new Button();
+			TabbarMapProperties = new TabControl();
+			TabGenerator = new TabPage();
+			TabBiomes = new TabPage();
 			ListBiomes = new ListBox();
-			panel2 = new Panel();
-			BtnLoadBiomes = new Button();
-			BtnSaveBiomes = new Button();
 			panel1 = new Panel();
 			label5 = new Label();
 			textBox1 = new TextBox();
@@ -53,8 +54,11 @@
 			label3 = new Label();
 			label2 = new Label();
 			label1 = new Label();
+			panel2 = new Panel();
+			BtnLoadBiomes = new Button();
+			BtnSaveBiomes = new Button();
 			ColorBiome = new ColorDialog();
-			BtnClearMap = new Button();
+			WorldMapProperties = new PropertyGrid();
 			TabbarEditor.SuspendLayout();
 			TabMapEditor.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)SplitContainerMapGen).BeginInit();
@@ -62,8 +66,11 @@
 			SplitContainerMapGen.Panel2.SuspendLayout();
 			SplitContainerMapGen.SuspendLayout();
 			panel3.SuspendLayout();
-			panel2.SuspendLayout();
+			TabbarMapProperties.SuspendLayout();
+			TabGenerator.SuspendLayout();
+			TabBiomes.SuspendLayout();
 			panel1.SuspendLayout();
+			panel2.SuspendLayout();
 			SuspendLayout();
 			// 
 			// TabbarEditor
@@ -75,7 +82,7 @@
 			TabbarEditor.Margin = new Padding(3, 2, 3, 2);
 			TabbarEditor.Name = "TabbarEditor";
 			TabbarEditor.SelectedIndex = 0;
-			TabbarEditor.Size = new Size(1240, 514);
+			TabbarEditor.Size = new Size(794, 514);
 			TabbarEditor.TabIndex = 1;
 			// 
 			// TabMapEditor
@@ -85,7 +92,7 @@
 			TabMapEditor.Margin = new Padding(3, 2, 3, 2);
 			TabMapEditor.Name = "TabMapEditor";
 			TabMapEditor.Padding = new Padding(3, 2, 3, 2);
-			TabMapEditor.Size = new Size(1232, 483);
+			TabMapEditor.Size = new Size(786, 483);
 			TabMapEditor.TabIndex = 0;
 			TabMapEditor.Text = "Карта";
 			TabMapEditor.UseVisualStyleBackColor = true;
@@ -103,11 +110,9 @@
 			// 
 			// SplitContainerMapGen.Panel2
 			// 
-			SplitContainerMapGen.Panel2.Controls.Add(ListBiomes);
-			SplitContainerMapGen.Panel2.Controls.Add(panel2);
-			SplitContainerMapGen.Panel2.Controls.Add(panel1);
-			SplitContainerMapGen.Size = new Size(1226, 479);
-			SplitContainerMapGen.SplitterDistance = 895;
+			SplitContainerMapGen.Panel2.Controls.Add(TabbarMapProperties);
+			SplitContainerMapGen.Size = new Size(780, 479);
+			SplitContainerMapGen.SplitterDistance = 427;
 			SplitContainerMapGen.SplitterWidth = 5;
 			SplitContainerMapGen.TabIndex = 0;
 			// 
@@ -118,8 +123,18 @@
 			panel3.Dock = DockStyle.Top;
 			panel3.Location = new Point(0, 0);
 			panel3.Name = "panel3";
-			panel3.Size = new Size(895, 35);
+			panel3.Size = new Size(427, 35);
 			panel3.TabIndex = 0;
+			// 
+			// BtnClearMap
+			// 
+			BtnClearMap.Location = new Point(111, 4);
+			BtnClearMap.Name = "BtnClearMap";
+			BtnClearMap.Size = new Size(100, 26);
+			BtnClearMap.TabIndex = 3;
+			BtnClearMap.Text = "Очистить";
+			BtnClearMap.UseVisualStyleBackColor = true;
+			BtnClearMap.Click += BtnClearMap_Click;
 			// 
 			// BtnGenerateMap
 			// 
@@ -131,49 +146,55 @@
 			BtnGenerateMap.UseVisualStyleBackColor = true;
 			BtnGenerateMap.Click += BtnGenerateMap_Click;
 			// 
+			// TabbarMapProperties
+			// 
+			TabbarMapProperties.Appearance = TabAppearance.FlatButtons;
+			TabbarMapProperties.Controls.Add(TabGenerator);
+			TabbarMapProperties.Controls.Add(TabBiomes);
+			TabbarMapProperties.Dock = DockStyle.Fill;
+			TabbarMapProperties.Location = new Point(0, 0);
+			TabbarMapProperties.Name = "TabbarMapProperties";
+			TabbarMapProperties.SelectedIndex = 0;
+			TabbarMapProperties.Size = new Size(348, 479);
+			TabbarMapProperties.TabIndex = 5;
+			// 
+			// TabGenerator
+			// 
+			TabGenerator.Controls.Add(WorldMapProperties);
+			TabGenerator.Location = new Point(4, 27);
+			TabGenerator.Name = "TabGenerator";
+			TabGenerator.Padding = new Padding(3);
+			TabGenerator.Size = new Size(340, 448);
+			TabGenerator.TabIndex = 1;
+			TabGenerator.Text = "Генератор";
+			TabGenerator.UseVisualStyleBackColor = true;
+			// 
+			// TabBiomes
+			// 
+			TabBiomes.Controls.Add(ListBiomes);
+			TabBiomes.Controls.Add(panel1);
+			TabBiomes.Controls.Add(panel2);
+			TabBiomes.Location = new Point(4, 27);
+			TabBiomes.Name = "TabBiomes";
+			TabBiomes.Padding = new Padding(3);
+			TabBiomes.Size = new Size(340, 448);
+			TabBiomes.TabIndex = 0;
+			TabBiomes.Text = "Биомы";
+			TabBiomes.UseVisualStyleBackColor = true;
+			// 
 			// ListBiomes
 			// 
 			ListBiomes.BackColor = SystemColors.Control;
 			ListBiomes.Dock = DockStyle.Fill;
 			ListBiomes.FormattingEnabled = true;
 			ListBiomes.ItemHeight = 15;
-			ListBiomes.Location = new Point(0, 138);
+			ListBiomes.Location = new Point(3, 141);
 			ListBiomes.Margin = new Padding(3, 2, 3, 2);
 			ListBiomes.Name = "ListBiomes";
 			ListBiomes.ScrollAlwaysVisible = true;
-			ListBiomes.Size = new Size(326, 304);
+			ListBiomes.Size = new Size(334, 267);
 			ListBiomes.TabIndex = 4;
 			ListBiomes.SelectedIndexChanged += ListBiomes_SelectedIndexChanged;
-			// 
-			// panel2
-			// 
-			panel2.Controls.Add(BtnLoadBiomes);
-			panel2.Controls.Add(BtnSaveBiomes);
-			panel2.Dock = DockStyle.Bottom;
-			panel2.Location = new Point(0, 442);
-			panel2.Name = "panel2";
-			panel2.Size = new Size(326, 37);
-			panel2.TabIndex = 3;
-			// 
-			// BtnLoadBiomes
-			// 
-			BtnLoadBiomes.Location = new Point(115, 5);
-			BtnLoadBiomes.Name = "BtnLoadBiomes";
-			BtnLoadBiomes.Size = new Size(97, 26);
-			BtnLoadBiomes.TabIndex = 1;
-			BtnLoadBiomes.Text = "Загрузить";
-			BtnLoadBiomes.UseVisualStyleBackColor = true;
-			BtnLoadBiomes.Click += BtnLoadBiomes_Click;
-			// 
-			// BtnSaveBiomes
-			// 
-			BtnSaveBiomes.Location = new Point(224, 5);
-			BtnSaveBiomes.Name = "BtnSaveBiomes";
-			BtnSaveBiomes.Size = new Size(97, 26);
-			BtnSaveBiomes.TabIndex = 0;
-			BtnSaveBiomes.Text = "Сохранить";
-			BtnSaveBiomes.UseVisualStyleBackColor = true;
-			BtnSaveBiomes.Click += BtnSaveBiomes_Click;
 			// 
 			// panel1
 			// 
@@ -193,10 +214,10 @@
 			panel1.Controls.Add(label2);
 			panel1.Controls.Add(label1);
 			panel1.Dock = DockStyle.Top;
-			panel1.Location = new Point(0, 0);
+			panel1.Location = new Point(3, 3);
 			panel1.Margin = new Padding(3, 2, 3, 2);
 			panel1.Name = "panel1";
-			panel1.Size = new Size(326, 138);
+			panel1.Size = new Size(334, 138);
 			panel1.TabIndex = 1;
 			// 
 			// label5
@@ -348,21 +369,51 @@
 			label1.TabIndex = 0;
 			label1.Text = "Высота";
 			// 
-			// BtnClearMap
+			// panel2
 			// 
-			BtnClearMap.Location = new Point(111, 4);
-			BtnClearMap.Name = "BtnClearMap";
-			BtnClearMap.Size = new Size(100, 26);
-			BtnClearMap.TabIndex = 3;
-			BtnClearMap.Text = "Очистить";
-			BtnClearMap.UseVisualStyleBackColor = true;
-			BtnClearMap.Click += BtnClearMap_Click;
+			panel2.Controls.Add(BtnLoadBiomes);
+			panel2.Controls.Add(BtnSaveBiomes);
+			panel2.Dock = DockStyle.Bottom;
+			panel2.Location = new Point(3, 408);
+			panel2.Name = "panel2";
+			panel2.Size = new Size(334, 37);
+			panel2.TabIndex = 3;
+			// 
+			// BtnLoadBiomes
+			// 
+			BtnLoadBiomes.Dock = DockStyle.Right;
+			BtnLoadBiomes.Location = new Point(140, 0);
+			BtnLoadBiomes.Name = "BtnLoadBiomes";
+			BtnLoadBiomes.Size = new Size(97, 37);
+			BtnLoadBiomes.TabIndex = 1;
+			BtnLoadBiomes.Text = "Загрузить";
+			BtnLoadBiomes.UseVisualStyleBackColor = true;
+			BtnLoadBiomes.Click += BtnLoadBiomes_Click;
+			// 
+			// BtnSaveBiomes
+			// 
+			BtnSaveBiomes.Dock = DockStyle.Right;
+			BtnSaveBiomes.Location = new Point(237, 0);
+			BtnSaveBiomes.Name = "BtnSaveBiomes";
+			BtnSaveBiomes.Size = new Size(97, 37);
+			BtnSaveBiomes.TabIndex = 0;
+			BtnSaveBiomes.Text = "Сохранить";
+			BtnSaveBiomes.UseVisualStyleBackColor = true;
+			BtnSaveBiomes.Click += BtnSaveBiomes_Click;
+			// 
+			// WorldMapProperties
+			// 
+			WorldMapProperties.Dock = DockStyle.Fill;
+			WorldMapProperties.Location = new Point(3, 3);
+			WorldMapProperties.Name = "WorldMapProperties";
+			WorldMapProperties.Size = new Size(334, 442);
+			WorldMapProperties.TabIndex = 2;
 			// 
 			// Desktop
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(1240, 514);
+			ClientSize = new Size(794, 514);
 			Controls.Add(TabbarEditor);
 			Margin = new Padding(3, 2, 3, 2);
 			Name = "Desktop";
@@ -375,9 +426,12 @@
 			((System.ComponentModel.ISupportInitialize)SplitContainerMapGen).EndInit();
 			SplitContainerMapGen.ResumeLayout(false);
 			panel3.ResumeLayout(false);
-			panel2.ResumeLayout(false);
+			TabbarMapProperties.ResumeLayout(false);
+			TabGenerator.ResumeLayout(false);
+			TabBiomes.ResumeLayout(false);
 			panel1.ResumeLayout(false);
 			panel1.PerformLayout();
+			panel2.ResumeLayout(false);
 			ResumeLayout(false);
 		}
 
@@ -386,11 +440,18 @@
 		private TabControl TabbarEditor;
 		private TabPage TabMapEditor;
 		private SplitContainer SplitContainerMapGen;
+		private ColorDialog ColorBiome;
+		private Panel panel3;
+		private Button BtnGenerateMap;
+		private Button BtnClearMap;
+		private TabControl TabbarMapProperties;
+		private TabPage TabBiomes;
+		private ListBox ListBiomes;
 		private Panel panel1;
-		private Label label1;
-		private Label label3;
-		private Label label2;
-		private Label label4;
+		private Label label5;
+		private TextBox textBox1;
+		private TextBox textBox2;
+		private Panel PanelBiomeColor;
 		private TextBox TxtColor;
 		private TextBox TxtHumidityMax;
 		private TextBox TxtHumidityMin;
@@ -398,17 +459,14 @@
 		private TextBox TxtTempMin;
 		private TextBox TxtHeightMax;
 		private TextBox TxtHeightMin;
-		private ColorDialog ColorBiome;
-		private Panel PanelBiomeColor;
-		private Label label5;
-		private TextBox textBox1;
-		private TextBox textBox2;
-		private ListBox ListBiomes;
+		private Label label4;
+		private Label label3;
+		private Label label2;
+		private Label label1;
 		private Panel panel2;
-		private Button BtnSaveBiomes;
-		private Panel panel3;
-		private Button BtnGenerateMap;
 		private Button BtnLoadBiomes;
-		private Button BtnClearMap;
+		private Button BtnSaveBiomes;
+		private TabPage TabGenerator;
+		private PropertyGrid WorldMapProperties;
 	}
 }

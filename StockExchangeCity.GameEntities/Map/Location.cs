@@ -10,6 +10,6 @@
 
 		public float Humidity { get; set; }
 
-		public int Height { get; set; }
+		public float Height { get; set; }
 	}
 }

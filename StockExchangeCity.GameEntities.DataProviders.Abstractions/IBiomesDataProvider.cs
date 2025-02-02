@@ -11,7 +11,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 
 		Task SaveAsync();
 
-		Biome? Find(int height, float temperature, float humidity);
+		Biome? Find(float height, float temperature, float humidity);
 
 		List<Biome> FindByAnyOption(Range height, Range temperature, Range humidity);
 	}

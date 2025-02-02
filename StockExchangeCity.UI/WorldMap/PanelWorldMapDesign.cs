@@ -13,6 +13,13 @@ namespace StockExchangeCity.UI.WorldMap
         private float _scrollOffset = 0;
         private bool _mouseSet = false;
         private List<Area> _areas = new List<Area>();
+        private RectangleF _areaRect = new RectangleF
+        { 
+            X = 0,
+            Y = 0,
+            Width = 128,
+            Height = 128,
+        };
 
         public PanelWorldMapDesign(IMapsDataProvider mapsDataProvider)
         {
@@ -31,9 +38,9 @@ namespace StockExchangeCity.UI.WorldMap
             Refresh();
         }
 
-        public async Task GenerateLocationAsync(int x, int y, int width, int height)
+        public async Task GenerateLocationAsync()
         {
-            var area = await _mapsDataProvider.GenerateAsync(0, 0, 128, 128);
+            var area = await _mapsDataProvider.GenerateAsync(_areaRect, 12345);
             _areas.AddRange(area);
             Refresh();
         }
@@ -54,6 +61,8 @@ namespace StockExchangeCity.UI.WorldMap
                 _yOffsetStart = e.Y;
                 Refresh();
             }
+
+
         }
 
         private void PanelWorldMap_OnMouseUp(object? sender, MouseEventArgs e)
@@ -79,7 +88,7 @@ namespace StockExchangeCity.UI.WorldMap
         private void PanelWorldMap_OnPaint(object? sender, PaintEventArgs e)
         {
             var g = e.Graphics;
-            var size = 8f - _scrollOffset * 0.001f;
+            var size = 8f - _scrollOffset * 0.005f;
 
             foreach (var area in _areas)
             {

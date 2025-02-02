@@ -6,7 +6,7 @@ using StockExchangeCity.UI.WorldMap;
 
 namespace StockExchangeCity.Tool.MapEditor
 {
-    public partial class Desktop : Form
+	public partial class Desktop : Form
 	{
 		private readonly IServiceProvider _serviceProvider;
 		private readonly IBiomesDataProvider _biomsDataProvider;
@@ -93,7 +93,11 @@ namespace StockExchangeCity.Tool.MapEditor
 		private void Desktop_Load(object sender, EventArgs e)
 		{
 			GameHostBuilder.AddLog();
+			ConfigureWorldMapPanel();
+		}
 
+		private void ConfigureWorldMapPanel()
+		{
 			ReloadBiomes();
 
 			_panelWorldMap.Dock = DockStyle.Fill;
@@ -105,6 +109,9 @@ namespace StockExchangeCity.Tool.MapEditor
 			};
 
 			SplitContainerMapGen.Panel1.Controls.Add(_panelWorldMap);
+
+
+			//ListGeneratorProperties.Items.Add("Speed")
 		}
 
 		private void ListBiomes_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,12 +218,13 @@ namespace StockExchangeCity.Tool.MapEditor
 
 		private async void BtnGenerateMap_Click(object sender, EventArgs e)
 		{
-			await _panelWorldMap.GenerateLocationAsync(0, 0, 10, 10);
+			await _panelWorldMap.GenerateLocationAsync();
 		}
 
 		private void BtnClearMap_Click(object sender, EventArgs e)
 		{
 			_panelWorldMap.ClearAreas();
 		}
+
 	}
 }

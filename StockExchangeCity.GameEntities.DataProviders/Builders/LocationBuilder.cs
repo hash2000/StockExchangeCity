@@ -4,63 +4,65 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 {
 	public class LocationBuilder
 	{
-		public float TemperatureIncrement { get; set; } = 0.3f;
-		public int TemperatureHeightMax { get; set; } = 60;
-		public int TemperatureDefault { get; set; } = 20;
-		public float TemperatureScale { get; set; } = 0.001f;
+		public float MinTemperature { get; set; } = -40;
+		public float MaxTemperature { get; set; } = 30;
+		public float MinHeight { get; set; } = 0;
+		public float MaxHeight { get; set; } = 255;
+		public float MinHumidity { get; set; } = 0;
+		public float MaxHumidity { get; set; } = 100;
 
-		public float HumidityTemperature { get; set; } = 1.3f;
-		public float HumidityHeighTemperature { get; set; } = 23f;
-		public float HumidityLowTemperature { get; set; } = 2f;
-		public float HumidityHeight { get; set; } = 0.2f;
-		public float HumidityScale { get; set; } = 0.003f;
 
-		private readonly Perlin2D _noiseGen;
+		private Perlin2D _heightNoise;
+		private Perlin2D _temperatureNoise;
+		private Perlin2D _humidityNoise;
 
-		private int _xPos = 0;
-		private int _yPos = 0;
-		private int _mapWidth = 0;
-		private int _mapHeight = 0;
-		private float _fluctuation = 0;
-		private float _scale = 0.005f;
-		private float _fluctuationMax = 0f;
-		private int HeightMax = 255;
+		private float _scale = 0.08f;
 
-		public LocationBuilder(int x, int y, int width, int height, int speed = 70)
+		public LocationBuilder(int speed = 70)
 		{
-			_noiseGen = new Perlin2D(speed);
-			_xPos = x;
-			_yPos = y;
-			_mapWidth = width;
-			_mapHeight = height;
+			_heightNoise = new Perlin2D(speed);
+			_temperatureNoise = new Perlin2D(speed + 1);
+			_humidityNoise = new Perlin2D(speed + 2);
 		}
 
-		public void Build(Action<Location> action)
+		public void Build(float xPos, float yPos, float mapWidth, float mapHeight, Action<Location> action)
 		{
-			for (int x = 0; x < _mapWidth; x++)
+			for (int x = 0; x < mapWidth; x++)
 			{
-				for (int y = 0; y < _mapHeight; y++)
+				for (int y = 0; y < mapHeight; y++)
 				{
-					int worldX = x + _xPos;
-					int worldY = y + _yPos;
+					float worldX = x + xPos;
+					float worldY = y + yPos;
+					float worldXnoise = worldX * _scale;
+					float worldYnoise = worldY * _scale;
 
-					float humidityNoise = _noiseGen.Noise(
-						worldX * HumidityScale,
-						worldY * HumidityScale * 100 - 50);
+					// Генерация высоты, температуры и влажности
+					float heightValue = _heightNoise.Noise(worldXnoise, worldYnoise) * 127.5f + 127.5f;
+					float temperatureValue = _temperatureNoise.Noise(worldXnoise, worldYnoise) * 35f - 5f;
+					float humidityValue = _humidityNoise.Noise(worldXnoise, worldYnoise) * 50f + 50f;
 
-					float highNoise = _noiseGen.Noise(
-						worldX * _scale,
-						worldY * _scale);
+					// Корректировка влажности в зависимости от температуры
+					if (temperatureValue < 0f)
+					{
+						// Уменьшаем влажность при низких температурах
+						humidityValue *= 0.8f; 
+					}
+					else if (temperatureValue > 20f)
+					{
+						// Увеличиваем влажность при высоких температурах
+						humidityValue *= 1.2f; 
+					}
 
-					int height = (int)Math.Round(Map(highNoise, 0f, 1f, 0f, HeightMax));
-					float temperature = CalcTemperature(worldX, worldY, height);
-					float humidity = CalcHumidity(worldX, worldY, temperature);
+					// Ограничиваем значения
+					heightValue = Math.Clamp(heightValue, MinHeight, MaxHeight);
+					temperatureValue = Math.Clamp(temperatureValue, MinTemperature, MaxTemperature);
+					humidityValue = Math.Clamp(humidityValue, MinHumidity, MaxHumidity);
 
 					var location = new Location();
 
-					location.Height = height;
-					location.Temperature = temperature;
-					location.Humidity = humidity;
+					location.Height = heightValue;
+					location.Temperature = temperatureValue;
+					location.Humidity = humidityValue;
 					location.X = worldX;
 					location.Y = worldY;
 
@@ -68,38 +70,5 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 				}
 			}
 		}
-
-		private static float Map(float value,
-			float istart, float istop,
-			float ostart, float ostop)
-		{
-			return ostart + (ostop - ostart) * ((value - istart) / (istop - istart));
-		}
-
-		private float CalcTemperature(int x, int y, int h)
-		{
-			var noise = _noiseGen.Noise(
-				x * TemperatureScale,
-				y * TemperatureScale * TemperatureHeightMax);
-			var temperature = TemperatureDefault - Math.Abs(h - TemperatureHeightMax) *
-				TemperatureIncrement + noise;
-
-			return temperature;
-		}
-
-		private float CalcHumidity(int x, int y, float temp)
-		{
-			float humidityNoise = _noiseGen.Noise(
-				x * HumidityScale,
-				y * HumidityScale) * 100 - 50;
-
-			if (temp > HumidityHeighTemperature)
-				temp -= temp - HumidityHeighTemperature;
-			else if (temp < HumidityLowTemperature)
-				temp += HumidityLowTemperature - temp;
-
-			return humidityNoise + temp * HumidityTemperature;
-		}
-
 	}
 }

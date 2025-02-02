@@ -1,388 +1,244 @@
 {
 	"items": [
-		{
-			"name": "Abyss",
-			"height": {
-				"min": 0,
-				"max": 39
-			},
-			"temperature": {
-				"min": -10,
-				"max": 50
-			},
-			"humidity": {
-				"min": -10,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#090140"
+	  {
+		"name": "Ocean",
+		"height": {
+		  "min": 0,
+		  "max": 50
 		},
-		{
-			"name": "Ocean",
-			"height": {
-				"min": 40,
-				"max": 129
-			},
-			"temperature": {
-				"min": -10,
-				"max": 50
-			},
-			"humidity": {
-				"min": -10,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#2107D8"
+		"temperature": {
+		  "min": -10,
+		  "max": 30
 		},
-		{
-			"name": "IceLands",
-			"height": {
-				"min": 0,
-				"max": 170
-			},
-			"temperature": {
-				"min": -3.40282346638528859e+38,
-				"max": 0
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#75FCF2"
+		"humidity": {
+		  "min": 80,
+		  "max": 100
 		},
-		{
-			"name": "Shore",
-			"height": {
-				"min": 130,
-				"max": 135
-			},
-			"temperature": {
-				"min": 0,
-				"max": 50
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 50
-			},
-			"color": "#C7CE00"
+		"color": "#1E90FF"
+	  },
+	  {
+		"name": "Beach",
+		"height": {
+		  "min": 50,
+		  "max": 60
 		},
-		{
-			"name": "SnowyShore",
-			"height": {
-				"min": 130,
-				"max": 135
-			},
-			"temperature": {
-				"min": -3.40282346638528859e+38,
-				"max": 0
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#EDFCA8"
+		"temperature": {
+		  "min": 10,
+		  "max": 30
 		},
-		{
-			"name": "Plains",
-			"height": {
-				"min": 135,
-				"max": 169
-			},
-			"temperature": {
-				"min": 0,
-				"max": 50
-			},
-			"humidity": {
-				"min": 0,
-				"max": 50
-			},
-			"color": "#40D115"
+		"humidity": {
+		  "min": 60,
+		  "max": 80
 		},
-		{
-			"name": "FireLands",
-			"height": {
-				"min": 135,
-				"max": 169
-			},
-			"temperature": {
-				"min": 50,
-				"max": 3.40282346638528859e+38
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 30
-			},
-			"color": "#E57307"
+		"color": "#F4A460"
+	  },
+	  {
+		"name": "Forest",
+		"height": {
+		  "min": 60,
+		  "max": 150
 		},
-		{
-			"name": "Forest",
-			"height": {
-				"min": 140,
-				"max": 169
-			},
-			"temperature": {
-				"min": 0,
-				"max": 25
-			},
-			"humidity": {
-				"min": 5,
-				"max": 30
-			},
-			"color": "#128B03"
+		"temperature": {
+		  "min": 0,
+		  "max": 25
 		},
-		{
-			"name": "Tundra",
-			"height": {
-				"min": 140,
-				"max": 169
-			},
-			"temperature": {
-				"min": -10,
-				"max": 0
-			},
-			"humidity": {
-				"min": 5,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#745F4E"
+		"humidity": {
+		  "min": 50,
+		  "max": 80
 		},
-		{
-			"name": "Desert",
-			"height": {
-				"min": 135,
-				"max": 169
-			},
-			"temperature": {
-				"min": 30,
-				"max": 3.40282346638528859e+38
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 5
-			},
-			"color": "#CBB848"
+		"color": "#228B22"
+	  },
+	  {
+		"name": "Rainforest",
+		"height": {
+		  "min": 60,
+		  "max": 150
 		},
-		{
-			"name": "GrassyHills",
-			"height": {
-				"min": 160,
-				"max": 189
-			},
-			"temperature": {
-				"min": 5,
-				"max": 25
-			},
-			"humidity": {
-				"min": 5,
-				"max": 30
-			},
-			"color": "#2E7612"
+		"temperature": {
+		  "min": 20,
+		  "max": 30
 		},
-		{
-			"name": "ForestyHills",
-			"height": {
-				"min": 160,
-				"max": 189
-			},
-			"temperature": {
-				"min": 5,
-				"max": 30
-			},
-			"humidity": {
-				"min": 0,
-				"max": 30
-			},
-			"color": "#1B5504"
+		"humidity": {
+		  "min": 80,
+		  "max": 100
 		},
-		{
-			"name": "MuddyHills",
-			"height": {
-				"min": 170,
-				"max": 189
-			},
-			"temperature": {
-				"min": 0,
-				"max": 40
-			},
-			"humidity": {
-				"min": 0,
-				"max": 50
-			},
-			"color": "#984319"
+		"color": "#006400"
+	  },
+	  {
+		"name": "Desert",
+		"height": {
+		  "min": 60,
+		  "max": 150
 		},
-		{
-			"name": "DryHills",
-			"height": {
-				"min": 140,
-				"max": 189
-			},
-			"temperature": {
-				"min": 10,
-				"max": 40
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 0
-			},
-			"color": "#C6950A"
+		"temperature": {
+		  "min": 20,
+		  "max": 40
 		},
-		{
-			"name": "SnowyHills",
-			"height": {
-				"min": 170,
-				"max": 189
-			},
-			"temperature": {
-				"min": -3.40282346638528859e+38,
-				"max": 0
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#1FA27C"
+		"humidity": {
+		  "min": 0,
+		  "max": 20
 		},
-		{
-			"name": "DesertDunes",
-			"height": {
-				"min": 170,
-				"max": 189
-			},
-			"temperature": {
-				"min": 30,
-				"max": 3.40282346638528859e+38
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 0
-			},
-			"color": "#7E7109"
+		"color": "#FFD700"
+	  },
+	  {
+		"name": "Savanna",
+		"height": {
+		  "min": 60,
+		  "max": 150
 		},
-		{
-			"name": "Volcano",
-			"height": {
-				"min": 170,
-				"max": 255
-			},
-			"temperature": {
-				"min": 30,
-				"max": 3.40282346638528859e+38
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 35
-			},
-			"color": "#AF1109"
+		"temperature": {
+		  "min": 20,
+		  "max": 30
 		},
-		{
-			"name": "RockyMountains",
-			"height": {
-				"min": 180,
-				"max": 255
-			},
-			"temperature": {
-				"min": -3.40282346638528859e+38,
-				"max": 30
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 40
-			},
-			"color": "#43100D"
+		"humidity": {
+		  "min": 20,
+		  "max": 50
 		},
-		{
-			"name": "IceMountains",
-			"height": {
-				"min": 180,
-				"max": 255
-			},
-			"temperature": {
-				"min": -3.40282346638528859e+38,
-				"max": 0
-			},
-			"humidity": {
-				"min": 5,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#5B6A63"
+		"color": "#D2B48C"
+	  },
+	  {
+		"name": "Tundra",
+		"height": {
+		  "min": 60,
+		  "max": 150
 		},
-		{
-			"name": "Swamp",
-			"height": {
-				"min": 130,
-				"max": 170
-			},
-			"temperature": {
-				"min": 0,
-				"max": 35
-			},
-			"humidity": {
-				"min": 40,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#052403"
+		"temperature": {
+		  "min": -20,
+		  "max": 10
 		},
-		{
-			"name": "RainForest",
-			"height": {
-				"min": 140,
-				"max": 180
-			},
-			"temperature": {
-				"min": 30,
-				"max": 40
-			},
-			"humidity": {
-				"min": 40,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#324B28"
+		"humidity": {
+		  "min": 20,
+		  "max": 50
 		},
-		{
-			"name": "DryLands",
-			"height": {
-				"min": 0,
-				"max": 150
-			},
-			"temperature": {
-				"min": 0,
-				"max": 40
-			},
-			"humidity": {
-				"min": -3.40282346638528859e+38,
-				"max": 0
-			},
-			"color": "#834C10"
+		"color": "#F0E68C"
+	  },
+	  {
+		"name": "Mountain",
+		"height": {
+		  "min": 150,
+		  "max": 255
 		},
-		{
-			"name": "Savannah",
-			"height": {
-				"min": 135,
-				"max": 169
-			},
-			"temperature": {
-				"min": 20,
-				"max": 50
-			},
-			"humidity": {
-				"min": -10,
-				"max": 10
-			},
-			"color": "#767618"
+		"temperature": {
+		  "min": -40,
+		  "max": 10
 		},
-		{
-			"name": "GeyserLand",
-			"height": {
-				"min": 130,
-				"max": 170
-			},
-			"temperature": {
-				"min": 40,
-				"max": 3.40282346638528859e+38
-			},
-			"humidity": {
-				"min": 40,
-				"max": 3.40282346638528859e+38
-			},
-			"color": "#3A3B55"
-		}
+		"humidity": {
+		  "min": 30,
+		  "max": 70
+		},
+		"color": "#A9A9A9"
+	  },
+	  {
+		"name": "Snowy Mountain",
+		"height": {
+		  "min": 200,
+		  "max": 255
+		},
+		"temperature": {
+		  "min": -40,
+		  "max": 0
+		},
+		"humidity": {
+		  "min": 50,
+		  "max": 100
+		},
+		"color": "#FFFFFF"
+	  },
+	  {
+		"name": "Swamp",
+		"height": {
+		  "min": 50,
+		  "max": 100
+		},
+		"temperature": {
+		  "min": 10,
+		  "max": 25
+		},
+		"humidity": {
+		  "min": 80,
+		  "max": 100
+		},
+		"color": "#8B4513"
+	  },
+	  {
+		"name": "River",
+		"height": {
+		  "min": 40,
+		  "max": 60
+		},
+		"temperature": {
+		  "min": -10,
+		  "max": 30
+		},
+		"humidity": {
+		  "min": 90,
+		  "max": 100
+		},
+		"color": "#00BFFF"
+	  },
+	  {
+		"name": "Taiga",
+		"height": {
+		  "min": 100,
+		  "max": 200
+		},
+		"temperature": {
+		  "min": -10,
+		  "max": 15
+		},
+		"humidity": {
+		  "min": 50,
+		  "max": 80
+		},
+		"color": "#2E8B57"
+	  },
+	  {
+		"name": "Grassland",
+		"height": {
+		  "min": 60,
+		  "max": 150
+		},
+		"temperature": {
+		  "min": 10,
+		  "max": 25
+		},
+		"humidity": {
+		  "min": 30,
+		  "max": 60
+		},
+		"color": "#7CFC00"
+	  },
+	  {
+		"name": "Volcanic",
+		"height": {
+		  "min": 150,
+		  "max": 255
+		},
+		"temperature": {
+		  "min": 30,
+		  "max": 50
+		},
+		"humidity": {
+		  "min": 0,
+		  "max": 20
+		},
+		"color": "#8B0000"
+	  },
+	  {
+		"name": "Coral Reef",
+		"height": {
+		  "min": 0,
+		  "max": 40
+		},
+		"temperature": {
+		  "min": 20,
+		  "max": 30
+		},
+		"humidity": {
+		  "min": 90,
+		  "max": 100
+		},
+		"color": "#FF7F50"
+	  }
 	]
-}
+  }

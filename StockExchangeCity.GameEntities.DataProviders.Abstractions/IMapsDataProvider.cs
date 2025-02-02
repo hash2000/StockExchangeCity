@@ -8,6 +8,8 @@ namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 
 		Task SaveAsync();
 
-		Task<List<Area>> GenerateAsync(int x, int y, int width, int height, int speed = 70);
+		Task<List<Area>> GenerateAsync(float x, float y, float width, float height, int speed = 70);
+
+		Task<List<Area>> GenerateAsync(RectangleF rectangle, int speed = 70);
 	}
 }
