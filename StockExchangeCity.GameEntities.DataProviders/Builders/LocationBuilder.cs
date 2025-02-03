@@ -10,13 +10,14 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 		public float MaxHeight { get; set; } = 255;
 		public float MinHumidity { get; set; } = 0;
 		public float MaxHumidity { get; set; } = 100;
+		public float HumidityCoefficient { get; set; } = 6f;
+
+		public float NoiseScale = 0.05f;
 
 
 		private Perlin2D _heightNoise;
 		private Perlin2D _temperatureNoise;
 		private Perlin2D _humidityNoise;
-
-		private float _scale = 0.08f;
 
 		public LocationBuilder(int speed = 70)
 		{
@@ -27,19 +28,28 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 
 		public void Build(float xPos, float yPos, float mapWidth, float mapHeight, Action<Location> action)
 		{
+			
+
 			for (int x = 0; x < mapWidth; x++)
 			{
 				for (int y = 0; y < mapHeight; y++)
 				{
 					float worldX = x + xPos;
 					float worldY = y + yPos;
-					float worldXnoise = worldX * _scale;
-					float worldYnoise = worldY * _scale;
+					float worldXnoise = worldX * NoiseScale;
+					float worldYnoise = worldY * NoiseScale;
 
 					// Генерация высоты, температуры и влажности
 					float heightValue = _heightNoise.Noise(worldXnoise, worldYnoise) * 127.5f + 127.5f;
 					float temperatureValue = _temperatureNoise.Noise(worldXnoise, worldYnoise) * 35f - 5f;
 					float humidityValue = _humidityNoise.Noise(worldXnoise, worldYnoise) * 50f + 50f;
+
+					// Увеличиваем влажность на низких высотах
+					if (heightValue < 70) 
+					{
+						// Увеличиваем влажность
+						humidityValue += (70f - heightValue) * HumidityCoefficient ;
+					}
 
 					// Корректировка влажности в зависимости от температуры
 					if (temperatureValue < 0f)

@@ -84,8 +84,8 @@ namespace StockExchangeCity.Tool.MapEditor
 			{
 				ListBiomes.Items.Add(new BiomeViewModel
 				{
-					Biome = biome.Value,
-					Name = biome.Value.Name,
+					Biome = biome,
+					Name = biome.Name,
 				});
 			}
 		}
@@ -108,8 +108,8 @@ namespace StockExchangeCity.Tool.MapEditor
 				All = 5
 			};
 
-			SplitContainerMapGen.Panel1.Controls.Add(_panelWorldMap);
-
+			PanelWorldMapZone.Controls.Clear();
+			PanelWorldMapZone.Controls.Add(_panelWorldMap);
 
 			//ListGeneratorProperties.Items.Add("Speed")
 		}
@@ -180,16 +180,10 @@ namespace StockExchangeCity.Tool.MapEditor
 				return;
 			}
 
-			try
-			{
-				var color = ColorTranslator.FromHtml(TxtColor.Text);
-				ColorBiome.Color = color;
-				PanelBiomeColor.BackColor = ColorBiome.Color;
-			}
-			catch
-			{
-				TxtColor.BackColor = Color.MistyRose;
-			}
+			pBiome.Biome.Color = TxtColor.Text;
+			var color = ColorTranslator.FromHtml(TxtColor.Text);
+			ColorBiome.Color = color;
+			PanelBiomeColor.BackColor = ColorBiome.Color;
 		}
 
 		private async void BtnSaveBiomes_Click(object sender, EventArgs e)

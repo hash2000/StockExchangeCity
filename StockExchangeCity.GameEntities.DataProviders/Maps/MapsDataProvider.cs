@@ -13,7 +13,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 		private readonly IGameUsersRepository _users;
 		private readonly IBiomesDataProvider _biomes;
 		private readonly ArrayPool<Location> _locations;
-		private readonly LocationBuilder _locationBuilder = new LocationBuilder(70);
+		private readonly LocationBuilder _locationBuilder = new LocationBuilder(60);
 
 		public MapsDataProvider(ILogger logger,
 			IGameUsersRepository users,
@@ -24,21 +24,26 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 			_biomes = biomes;
 		}
 
-		public async Task<List<Area>> GenerateAsync(RectangleF rectangle, int speed)
+		public async Task<List<Area>> GenerateAsync(RectangleF rectangle)
 		{
 			return await GenerateAsync(
 				rectangle.X,
 				rectangle.Y,
 				rectangle.Width,
-				rectangle.Height,
-				speed);
+				rectangle.Height);
 		}
 
-		public async Task<List<Area>> GenerateAsync(float x, float y, float width, float height, int speed)
+		public async Task<List<Area>> GenerateAsync(float x, float y, float width, float height)
 		{
 			var result = new List<Area>((int)Math.Round(width, 0) * (int)Math.Round(height));
+			var defaultBiome = _biomes.FindByName("Desert");
 
-			_locationBuilder.Build(x, y, width, height, (location) =>
+			if (defaultBiome == null)
+			{
+				throw new ArgumentException("Undefined Default biome");
+			}
+
+ 			_locationBuilder.Build(x, y, width, height, (location) =>
 			{
 				var biome = _biomes.Find(
 					location.Height,
@@ -47,8 +52,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 
 				if (biome == null)
 				{
-					_logger.LogError($"Не удалось найти биом по высоте: {location.Height}, температуре: {location.Temperature}, влажности: {location.Humidity}");
-					return;
+					biome = defaultBiome;
 				}
 
 				result.Add(new Area

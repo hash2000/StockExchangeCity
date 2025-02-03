@@ -36,6 +36,7 @@
 			BtnGenerateMap = new Button();
 			TabbarMapProperties = new TabControl();
 			TabGenerator = new TabPage();
+			WorldMapProperties = new PropertyGrid();
 			TabBiomes = new TabPage();
 			ListBiomes = new ListBox();
 			panel1 = new Panel();
@@ -58,7 +59,7 @@
 			BtnLoadBiomes = new Button();
 			BtnSaveBiomes = new Button();
 			ColorBiome = new ColorDialog();
-			WorldMapProperties = new PropertyGrid();
+			PanelWorldMapZone = new Panel();
 			TabbarEditor.SuspendLayout();
 			TabMapEditor.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)SplitContainerMapGen).BeginInit();
@@ -106,6 +107,7 @@
 			// 
 			// SplitContainerMapGen.Panel1
 			// 
+			SplitContainerMapGen.Panel1.Controls.Add(PanelWorldMapZone);
 			SplitContainerMapGen.Panel1.Controls.Add(panel3);
 			// 
 			// SplitContainerMapGen.Panel2
@@ -128,9 +130,9 @@
 			// 
 			// BtnClearMap
 			// 
-			BtnClearMap.Location = new Point(111, 4);
+			BtnClearMap.Location = new Point(121, 4);
 			BtnClearMap.Name = "BtnClearMap";
-			BtnClearMap.Size = new Size(100, 26);
+			BtnClearMap.Size = new Size(110, 26);
 			BtnClearMap.TabIndex = 3;
 			BtnClearMap.Text = "Очистить";
 			BtnClearMap.UseVisualStyleBackColor = true;
@@ -140,7 +142,7 @@
 			// 
 			BtnGenerateMap.Location = new Point(5, 4);
 			BtnGenerateMap.Name = "BtnGenerateMap";
-			BtnGenerateMap.Size = new Size(100, 26);
+			BtnGenerateMap.Size = new Size(110, 26);
 			BtnGenerateMap.TabIndex = 2;
 			BtnGenerateMap.Text = "Генерировать";
 			BtnGenerateMap.UseVisualStyleBackColor = true;
@@ -168,6 +170,14 @@
 			TabGenerator.TabIndex = 1;
 			TabGenerator.Text = "Генератор";
 			TabGenerator.UseVisualStyleBackColor = true;
+			// 
+			// WorldMapProperties
+			// 
+			WorldMapProperties.Dock = DockStyle.Fill;
+			WorldMapProperties.Location = new Point(3, 3);
+			WorldMapProperties.Name = "WorldMapProperties";
+			WorldMapProperties.Size = new Size(334, 442);
+			WorldMapProperties.TabIndex = 2;
 			// 
 			// TabBiomes
 			// 
@@ -401,13 +411,13 @@
 			BtnSaveBiomes.UseVisualStyleBackColor = true;
 			BtnSaveBiomes.Click += BtnSaveBiomes_Click;
 			// 
-			// WorldMapProperties
+			// PanelWorldMapZone
 			// 
-			WorldMapProperties.Dock = DockStyle.Fill;
-			WorldMapProperties.Location = new Point(3, 3);
-			WorldMapProperties.Name = "WorldMapProperties";
-			WorldMapProperties.Size = new Size(334, 442);
-			WorldMapProperties.TabIndex = 2;
+			PanelWorldMapZone.Dock = DockStyle.Fill;
+			PanelWorldMapZone.Location = new Point(0, 35);
+			PanelWorldMapZone.Name = "PanelWorldMapZone";
+			PanelWorldMapZone.Size = new Size(427, 444);
+			PanelWorldMapZone.TabIndex = 1;
 			// 
 			// Desktop
 			// 
@@ -468,5 +478,6 @@
 		private Button BtnSaveBiomes;
 		private TabPage TabGenerator;
 		private PropertyGrid WorldMapProperties;
+		private Panel PanelWorldMapZone;
 	}
 }

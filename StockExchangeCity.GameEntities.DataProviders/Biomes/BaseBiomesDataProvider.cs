@@ -6,30 +6,12 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 {
 	internal abstract class BaseBiomesDataProvider : IBiomesDataProvider
 	{
-		public abstract Dictionary<string, Biome> Biomes { get; }
-
-		public abstract Task LoadInternalAsync();
-
-		public abstract Task SaveAsync();
-
-		public async Task LoadAsync()
+		public SortedSet<Biome> Biomes { get; } = new SortedSet<Biome>(Comparer<Biome>.Create((x, y) =>
 		{
-			await LoadInternalAsync();
-
-			_sortedBiomes.Clear();
-
-			foreach (var biome in Biomes.Values)
+			var teight = x.Height.Min.CompareTo(y.Height.Min);
+			if (teight != 0)
 			{
-				_sortedBiomes.Add(biome);
-			}
-		}
-
-		private SortedSet<Biome> _sortedBiomes = new SortedSet<Biome>(Comparer<Biome>.Create((x, y) =>
-		{
-			var temp = x.Temperature.Min.CompareTo(y.Temperature.Min);
-			if (temp != 0)
-			{
-				return temp;
+				return teight;
 			}
 
 			var humidity = x.Humidity.Min.CompareTo(y.Humidity.Min);
@@ -38,21 +20,47 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 				return humidity;
 			}
 
-			return x.Height.Min.CompareTo(y.Height.Min);
+			return x.Temperature.Min.CompareTo(y.Temperature.Min);
 		}));
+
+		public abstract Task LoadAsync();
+
+		public abstract Task SaveAsync();
+
+		public void RemoveByName(string name)
+		{
+			var items = Biomes.FirstOrDefault(x => x.Name == name);
+			if (items != null)
+			{
+				Biomes.Remove(items);
+			}
+		}
+
+		public Biome? FindByName(string name)
+		{
+			foreach (var item in Biomes)
+			{
+				if (item.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
+				{
+					return item;
+				}
+			}
+
+			return null;
+		}
 
 		public Biome? Find(float height, float temperature, float humidity)
 		{
-			if(_sortedBiomes.Count == 0)
+			if (Biomes.Count == 0)
 			{
 				return null;
 			}
 
-			foreach(var biome in _sortedBiomes)
+			foreach (var biome in Biomes)
 			{
-				if(biome.Height.IsFits(height) &&
-					biome.Temperature.IsFits(temperature) && 
-					biome.Humidity.IsFits(humidity))
+				if (biome.Height.IsFits(height) &&
+					biome.Humidity.IsFits(humidity) &&
+					biome.Temperature.IsFits(temperature))
 				{
 					return biome;
 				}
@@ -67,21 +75,21 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 
 			foreach (var biome in Biomes)
 			{
-				if (!biome.Value.Height.IsIncluded(height))
+				if (!biome.Height.IsIncluded(height))
 				{
-					result.Add(biome.Value);
+					result.Add(biome);
 					continue;
 				}
 
-				if (!biome.Value.Temperature.IsIncluded(temperature))
+				if (!biome.Humidity.IsIncluded(humidity))
 				{
-					result.Add(biome.Value);
+					result.Add(biome);
 					continue;
 				}
 
-				if (!biome.Value.Humidity.IsIncluded(humidity))
+				if (!biome.Temperature.IsIncluded(temperature))
 				{
-					result.Add(biome.Value);
+					result.Add(biome);
 					continue;
 				}
 			}

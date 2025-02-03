@@ -5,11 +5,13 @@ namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 {
 	public interface IBiomesDataProvider
 	{
-		Dictionary<string, Biome> Biomes { get; }
+		SortedSet<Biome> Biomes { get; }
 
 		Task LoadAsync();
 
 		Task SaveAsync();
+
+		Biome? FindByName(string name);
 
 		Biome? Find(float height, float temperature, float humidity);
 

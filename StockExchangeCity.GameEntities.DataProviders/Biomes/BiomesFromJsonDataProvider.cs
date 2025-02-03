@@ -7,7 +7,6 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 	{
 		private readonly string _mapsPath;
 		private readonly string _biomesPath;
-		private readonly Dictionary<string, Biome> _biomes = new Dictionary<string, Biome>();
 
 		public BiomesFromJsonDataProvider(string mapsPath)
 		{
@@ -15,20 +14,18 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 			_biomesPath = Path.Combine(_mapsPath, "Prefabs/Biomes/biomes.json");
 		}
 
-		public override Dictionary<string, Biome> Biomes => _biomes;
-
 		public override async Task SaveAsync()
 		{
 			var biomes = new BiomesList
 			{
-				Items = Biomes.Values.ToList(),
+				Items = Biomes.ToList(),
 			};
 
 			var asText = JsonConvert.SerializeObject(biomes);
 			await File.WriteAllTextAsync(_biomesPath, asText);
 		}
 
-		public override async Task LoadInternalAsync()
+		public override async Task LoadAsync()
 		{
 			var bioms = JsonConvert.DeserializeObject<BiomesList>(await File.ReadAllTextAsync(_biomesPath));
 			if (bioms?.Items == null)
@@ -40,14 +37,12 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 
 			foreach (var item in bioms.Items)
 			{
-				if (_biomes.ContainsKey(item.Name))
+				if (FindByName(item.Name) != null)
 				{
-					_biomes[item.Name] = item;
+					RemoveByName(item.Name);
 				}
-				else
-				{
-					_biomes.TryAdd(item.Name, item);
-				}
+
+				Biomes.Add(item);
 			}
 		}
 

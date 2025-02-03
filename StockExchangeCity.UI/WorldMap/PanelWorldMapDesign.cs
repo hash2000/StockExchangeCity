@@ -3,106 +3,162 @@ using StockExchangeCity.GameEntities.Map;
 
 namespace StockExchangeCity.UI.WorldMap
 {
-    public class PanelWorldMapDesign : Panel
-    {
-        private readonly IMapsDataProvider _mapsDataProvider;
-        private float _xOffset = 0;
-        private float _yOffset = 0;
-        private float _xOffsetStart = 0;
-        private float _yOffsetStart = 0;
-        private float _scrollOffset = 0;
-        private bool _mouseSet = false;
-        private List<Area> _areas = new List<Area>();
-        private RectangleF _areaRect = new RectangleF
-        { 
-            X = 0,
-            Y = 0,
-            Width = 128,
-            Height = 128,
-        };
+	public class PanelWorldMapDesign : Panel
+	{
+		private readonly IMapsDataProvider _mapsDataProvider;
+		private float _xOffset = 0;
+		private float _yOffset = 0;
+		private float _xOffsetStart = 0;
+		private float _yOffsetStart = 0;
+		private float _scrollOffset = 0;
+		private MouseButtons _mouseSet = MouseButtons.None;
+		private List<Area> _areas = new List<Area>();
+		private RectangleF _areaRectWindow = new RectangleF();
+		private RectangleF _areaRect = new RectangleF();
 
-        public PanelWorldMapDesign(IMapsDataProvider mapsDataProvider)
-        {
-            _mapsDataProvider = mapsDataProvider;
-            DoubleBuffered = true;
-            Paint += PanelWorldMap_OnPaint;
-            MouseDown += PanelWorldMap_OnMouseDown;
-            MouseUp += PanelWorldMap_OnMouseUp;
-            MouseMove += PanelWorldMap_OnMouseMove;
-            MouseWheel += PanelWorldMap_MouseWheel;
-        }
+		private readonly Pen _biomeBorderPen = new Pen(Color.Black);
+		private readonly Pen _selectedBorderPen = new Pen(Color.DarkRed, 3);
 
-        private void PanelWorldMap_MouseWheel(object? sender, MouseEventArgs e)
-        {
-            _scrollOffset -= e.Delta;
-            Refresh();
-        }
+		public PanelWorldMapDesign(IMapsDataProvider mapsDataProvider)
+		{
+			_mapsDataProvider = mapsDataProvider;
+			DoubleBuffered = true;
+			Paint += PanelWorldMap_OnPaint;
+			MouseDown += PanelWorldMap_OnMouseDown;
+			MouseUp += PanelWorldMap_OnMouseUp;
+			MouseMove += PanelWorldMap_OnMouseMove;
+			MouseWheel += PanelWorldMap_MouseWheel;
+			InitializeAreaRects();
+		}
 
-        public async Task GenerateLocationAsync()
-        {
-            var area = await _mapsDataProvider.GenerateAsync(_areaRect, 12345);
-            _areas.AddRange(area);
-            Refresh();
-        }
+		public async Task GenerateLocationAsync()
+		{
+			var area = await _mapsDataProvider.GenerateAsync(_areaRect);
+			_areas.AddRange(area);
+			Refresh();
+		}
 
-        public void ClearAreas()
-        {
-            _areas.Clear();
-            Refresh();
-        }
+		public void ClearAreas()
+		{
+			_areas.Clear();
+			Refresh();
+		}
 
-        private void PanelWorldMap_OnMouseMove(object? sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && _mouseSet)
-            {
-                _xOffset += _xOffsetStart - e.X;
-                _yOffset += _yOffsetStart - e.Y;
-                _xOffsetStart = e.X;
-                _yOffsetStart = e.Y;
-                Refresh();
-            }
+		private void PanelWorldMap_MouseWheel(object? sender, MouseEventArgs e)
+		{
+			_scrollOffset -= e.Delta;
+			UpdateAreaRectWindow();
+			Refresh();
+		}
 
+		private void PanelWorldMap_OnMouseMove(object? sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Right && _mouseSet == MouseButtons.Right)
+			{
+				_xOffset += _xOffsetStart - e.X;
+				_yOffset += _yOffsetStart - e.Y;
+				_xOffsetStart = e.X;
+				_yOffsetStart = e.Y;
+				UpdateAreaRectWindow();
+				Refresh();
+				return;
+			}
+		}
 
-        }
+		private void PanelWorldMap_OnMouseUp(object? sender, MouseEventArgs e)
+		{
+			if (_mouseSet == MouseButtons.Right)
+			{
+				_xOffsetStart = e.X;
+				_yOffsetStart = e.Y;
+			}
+			else if (_mouseSet == MouseButtons.Left)
+			{
+				var size = GetZoom();
+				float worldX = (e.X + _xOffset) / size;
+				float worldY = (e.Y + _yOffset) / size;
 
-        private void PanelWorldMap_OnMouseUp(object? sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                _mouseSet = false;
-                _xOffsetStart = e.X;
-                _yOffsetStart = e.Y;
-            }
-        }
+				// Выравниваем по сетке 128x128
+				_areaRect.X = (int)(worldX / 128) * 128;
+				_areaRect.Y = (int)(worldY / 128) * 128;
 
-        private void PanelWorldMap_OnMouseDown(object? sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                _mouseSet = true;
-                _xOffsetStart = e.X;
-                _yOffsetStart = e.Y;
-            }
-        }
+				if (worldX < 0) 
+				{
+					_areaRect.X -= 128;
+				}
 
-        private void PanelWorldMap_OnPaint(object? sender, PaintEventArgs e)
-        {
-            var g = e.Graphics;
-            var size = 8f - _scrollOffset * 0.005f;
+				if (worldY < 0)
+				{
+					_areaRect.Y -= 128;
+				}
 
-            foreach (var area in _areas)
-            {
-                var rect = new RectangleF
-                {
-                    X = area.Location.X * size - _xOffset,
-                    Y = area.Location.Y * size - _yOffset,
-                    Width = size,
-                    Height = size,
-                };
+				UpdateAreaRectWindow();
+				Refresh();
+			}
 
-                g.FillRectangle(new SolidBrush(area.Color), rect);
-                g.DrawRectangle(new Pen(Color.Black), rect);
-            }
-        }
-    }
+			_mouseSet = MouseButtons.None;
+		}
+
+		private void PanelWorldMap_OnMouseDown(object? sender, MouseEventArgs e)
+		{
+			_mouseSet = e.Button;
+
+			if (_mouseSet == MouseButtons.Right)
+			{
+				_xOffsetStart = e.X;
+				_yOffsetStart = e.Y;
+			}
+		}
+
+		private void PanelWorldMap_OnPaint(object? sender, PaintEventArgs e)
+		{
+			var g = e.Graphics;
+			var size = GetZoom();
+
+			foreach (var area in _areas)
+			{
+				var rect = new RectangleF
+				{
+					X = area.Location.X * size - _xOffset,
+					Y = area.Location.Y * size - _yOffset,
+					Width = size,
+					Height = size,
+				};
+
+				using (var pen = new SolidBrush(area.Color))
+				{
+					g.FillRectangle(pen, rect);
+				}
+
+				g.DrawRectangle(_biomeBorderPen, rect);
+			}
+
+			g.DrawRectangle(_selectedBorderPen, _areaRectWindow);
+		}
+
+		private float GetZoom()
+		{
+			return 8f - _scrollOffset * 0.005f;
+		}
+
+		private void InitializeAreaRects()
+		{
+			_areaRect.X = 0;
+			_areaRect.Y = 0;
+			_areaRect.Width = 128;
+			_areaRect.Height = 128;
+			UpdateAreaRectWindow();
+		}
+
+		private void UpdateAreaRectWindow()
+		{
+			var size = GetZoom();
+
+			_areaRectWindow.X = _areaRect.X * size - _xOffset;
+			_areaRectWindow.Y = _areaRect.Y * size - _yOffset;
+			_areaRectWindow.Width = _areaRect.Width * size;
+			_areaRectWindow.Height = _areaRect.Height * size;
+		}
+
+	}
 }
