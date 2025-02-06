@@ -9,8 +9,10 @@ namespace StockExchangeCity.GameEntities.DataProviders
 	{
 		public static IServiceCollection UseMapLoader(this IServiceCollection services, string dataPath)
 		{
-			services.AddSingleton<IMapsDataProvider, MapsDataProvider>();
 			services.AddSingleton<IBiomesDataProvider>(sb => new BiomesFromJsonDataProvider(dataPath));
+			services.AddSingleton<ISettlementDescriptorsDataProvider, SettlementDescriptorsDataProvider>();
+			services.AddSingleton<IWorldMapAreasGenerator, WorldMapAreasGenerator>();
+			services.AddSingleton<IWorldMapGenerator, WorldMapGenerator>();
 
 			return services;
 		}

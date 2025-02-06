@@ -7,7 +7,7 @@ using System.Buffers;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Maps
 {
-	internal class MapsDataProvider : IMapsDataProvider
+	internal class WorldMapAreasGenerator : IWorldMapAreasGenerator
 	{
 		private readonly ILogger _logger;
 		private readonly IGameUsersRepository _users;
@@ -15,7 +15,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 		private readonly ArrayPool<Location> _locations;
 		private readonly LocationBuilder _locationBuilder = new LocationBuilder(60);
 
-		public MapsDataProvider(ILogger logger,
+		public WorldMapAreasGenerator(ILogger logger,
 			IGameUsersRepository users,
 			IBiomesDataProvider biomes)
 		{

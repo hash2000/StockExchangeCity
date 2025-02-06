@@ -1,6 +1,6 @@
-﻿namespace StockExchangeCity.GameEntities.DataProviders.Builders
+﻿namespace StockExchangeCity.Base.Generators
 {
-	internal class Perlin2D
+	public class Perlin2D
 	{
 
 		private int[] permutation;

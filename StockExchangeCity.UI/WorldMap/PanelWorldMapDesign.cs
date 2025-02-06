@@ -5,7 +5,7 @@ namespace StockExchangeCity.UI.WorldMap
 {
 	public class PanelWorldMapDesign : Panel
 	{
-		private readonly IMapsDataProvider _mapsDataProvider;
+		private readonly IWorldMapAreasGenerator _mapAreas;
 		private float _xOffset = 0;
 		private float _yOffset = 0;
 		private float _xOffsetStart = 0;
@@ -19,9 +19,9 @@ namespace StockExchangeCity.UI.WorldMap
 		private readonly Pen _biomeBorderPen = new Pen(Color.Black);
 		private readonly Pen _selectedBorderPen = new Pen(Color.DarkRed, 3);
 
-		public PanelWorldMapDesign(IMapsDataProvider mapsDataProvider)
+		public PanelWorldMapDesign(IWorldMapAreasGenerator mapsAreas)
 		{
-			_mapsDataProvider = mapsDataProvider;
+			_mapAreas = mapsAreas;
 			DoubleBuffered = true;
 			Paint += PanelWorldMap_OnPaint;
 			MouseDown += PanelWorldMap_OnMouseDown;
@@ -33,8 +33,32 @@ namespace StockExchangeCity.UI.WorldMap
 
 		public async Task GenerateLocationAsync()
 		{
-			var area = await _mapsDataProvider.GenerateAsync(_areaRect);
+			var area = await _mapAreas.GenerateAsync(_areaRect);
 			_areas.AddRange(area);
+			/*
+			 // Генерация НП
+				var settlementGenerator = new SettlementGenerator(biomes, descriptors);
+				var settlements = settlementGenerator.GenerateSettlements(5, 15);
+
+				// Генерация дорог
+				var roadGenerator = new RoadGenerator(settlements);
+				var roads = roadGenerator.GenerateRoads();
+
+			// визуализация
+
+			foreach (var settlement in settlements)
+			{
+				Console.WriteLine($"Settlement {settlement.Name} (Type {settlement.Type}) occupies biomes:");
+				foreach (var biome in settlement.OccupiedBiomes)
+				{
+					Console.WriteLine($"  Biome at ({biome.X}, {biome.Y})");
+				}
+				Console.WriteLine($"Connected to: {string.Join(", ", settlement.ConnectedSettlements.Select(s => s.Name))}");
+			}
+			 */
+
+
+
 			Refresh();
 		}
 

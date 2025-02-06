@@ -13,6 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\StockExchangeCity.Base\StockExchangeCity.Base.csproj" />
 	  <ProjectReference Include="..\StockExchangeCity.GameEntities.DataProviders.Abstractions\StockExchangeCity.GameEntities.DataProviders.Abstractions.csproj" />
 	  <ProjectReference Include="..\StockExchangeCity.Users\StockExchangeCity.GameUsers.csproj" />
 	</ItemGroup>

@@ -1,4 +1,5 @@
-﻿using StockExchangeCity.GameEntities.Map;
+﻿using StockExchangeCity.Base.Generators;
+using StockExchangeCity.GameEntities.Map;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Builders
 {
@@ -15,9 +16,9 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 		public float NoiseScale = 0.05f;
 
 
-		private Perlin2D _heightNoise;
-		private Perlin2D _temperatureNoise;
-		private Perlin2D _humidityNoise;
+		private readonly Perlin2D _heightNoise;
+		private readonly Perlin2D _temperatureNoise;
+		private readonly Perlin2D _humidityNoise;
 
 		public LocationBuilder(int speed = 70)
 		{

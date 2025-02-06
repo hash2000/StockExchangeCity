@@ -1,21 +1,27 @@
 ﻿namespace StockExchangeCity.GameEntities.Map
 {
+	/// <summary>
+	/// Биом
+	/// </summary>
 	public class Biome
 	{
+		/// <summary>
+		/// название биома
+		/// </summary>
 		public string Name { get; set; } = string.Empty;
 
 		/// <summary>
-		/// высота
+		/// диапазон высот
 		/// </summary>
 		public Range Height { get; set; } 
 
 		/// <summary>
-		/// температура
+		/// дипазон температур
 		/// </summary>
 		public Range Temperature { get; set; }
 
 		/// <summary>
-		/// влажность
+		/// диапазон влажности
 		/// </summary>
 		public Range Humidity { get; set; }
 

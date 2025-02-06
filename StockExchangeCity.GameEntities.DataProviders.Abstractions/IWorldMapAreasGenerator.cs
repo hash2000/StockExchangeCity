@@ -2,7 +2,7 @@
 
 namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 {
-	public interface IMapsDataProvider
+	public interface IWorldMapAreasGenerator
 	{
 		Task LoadAsync();
 
