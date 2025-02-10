@@ -17,6 +17,5 @@
 	<ItemGroup>
 		<ProjectReference Include="..\StockExchangeCity.GameEntities.DataProviders\StockExchangeCity.GameEntities.DataProviders.csproj" />
 		<ProjectReference Include="..\StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj" />
-		<ProjectReference Include="..\StockExchangeCity.UI\StockExchangeCity.UI.csproj" />
 	</ItemGroup>
 </Project>

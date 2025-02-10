@@ -2,7 +2,7 @@
   "profiles": {
     "StockExchangeCity.Tool.MapEditor": {
       "commandName": "Project",
-      "workingDirectory": "../"
+      "workingDirectory": "../../"
     }
   }
 }

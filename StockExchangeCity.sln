@@ -3,15 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35208.52
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity", "StockExchangeCity\StockExchangeCity.csproj", "{E10C5054-FA41-48A5-8848-6EBA28141E12}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity.GameEntities", "StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj", "{5F808CD6-859E-4B3E-9F5C-A54DBC240655}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity.GameUsers", "StockExchangeCity.Users\StockExchangeCity.GameUsers.csproj", "{3595EA5F-88DC-4C27-9530-53EA675B5290}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity.UI", "StockExchangeCity.UI\StockExchangeCity.UI.csproj", "{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity.Tool.MapEditor", "StockExchangeCity.Tool.MapEditor\StockExchangeCity.Tool.MapEditor.csproj", "{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockExchangeCity.GameEntities.DataProviders.Abstractions", "StockExchangeCity.GameEntities.DataProviders.Abstractions\StockExchangeCity.GameEntities.DataProviders.Abstractions.csproj", "{4D8853CB-B3BA-4871-9335-72CB382A3A41}"
 EndProject
@@ -23,16 +17,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{323F29E3-F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeCity.Base", "StockExchangeCity.Base\StockExchangeCity.Base.csproj", "{0B71489D-93BC-4D5A-B400-488B5FCE624F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "depricated", "depricated", "{B2A4E5D8-4152-4B8A-894D-B7FE0F503F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeCity", "Depricated\StockExchangeCity\StockExchangeCity.csproj", "{3B80B825-9555-4C7D-9067-211AAF2203C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeCity.UI", "Depricated\StockExchangeCity.UI\StockExchangeCity.UI.csproj", "{9EC9BF76-A193-4AF0-8334-AB626300A35F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeCity.Tool.MapEditor", "Depricated\StockExchangeCity.Tool.MapEditor\StockExchangeCity.Tool.MapEditor.csproj", "{70F0AEC1-2728-4C1D-AD96-8E6DBE183601}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E10C5054-FA41-48A5-8848-6EBA28141E12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E10C5054-FA41-48A5-8848-6EBA28141E12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E10C5054-FA41-48A5-8848-6EBA28141E12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E10C5054-FA41-48A5-8848-6EBA28141E12}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5F808CD6-859E-4B3E-9F5C-A54DBC240655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5F808CD6-859E-4B3E-9F5C-A54DBC240655}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F808CD6-859E-4B3E-9F5C-A54DBC240655}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,14 +39,6 @@ Global
 		{3595EA5F-88DC-4C27-9530-53EA675B5290}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3595EA5F-88DC-4C27-9530-53EA675B5290}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3595EA5F-88DC-4C27-9530-53EA675B5290}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{924A079B-9DB7-4897-95CC-DBAB95D6BA8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D8853CB-B3BA-4871-9335-72CB382A3A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D8853CB-B3BA-4871-9335-72CB382A3A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D8853CB-B3BA-4871-9335-72CB382A3A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +55,18 @@ Global
 		{0B71489D-93BC-4D5A-B400-488B5FCE624F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B71489D-93BC-4D5A-B400-488B5FCE624F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B71489D-93BC-4D5A-B400-488B5FCE624F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B80B825-9555-4C7D-9067-211AAF2203C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B80B825-9555-4C7D-9067-211AAF2203C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B80B825-9555-4C7D-9067-211AAF2203C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B80B825-9555-4C7D-9067-211AAF2203C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EC9BF76-A193-4AF0-8334-AB626300A35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EC9BF76-A193-4AF0-8334-AB626300A35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EC9BF76-A193-4AF0-8334-AB626300A35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EC9BF76-A193-4AF0-8334-AB626300A35F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70F0AEC1-2728-4C1D-AD96-8E6DBE183601}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70F0AEC1-2728-4C1D-AD96-8E6DBE183601}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70F0AEC1-2728-4C1D-AD96-8E6DBE183601}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70F0AEC1-2728-4C1D-AD96-8E6DBE183601}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,11 +74,13 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5F808CD6-859E-4B3E-9F5C-A54DBC240655} = {323F29E3-FC5E-40AF-83E5-88BABFE33C36}
 		{3595EA5F-88DC-4C27-9530-53EA675B5290} = {323F29E3-FC5E-40AF-83E5-88BABFE33C36}
-		{D2DC6DB3-137F-4E1B-93B8-4B6CA7150AC5} = {323F29E3-FC5E-40AF-83E5-88BABFE33C36}
 		{4D8853CB-B3BA-4871-9335-72CB382A3A41} = {323F29E3-FC5E-40AF-83E5-88BABFE33C36}
 		{7D0D4273-2085-47B8-8D33-279B4E4ED24E} = {323F29E3-FC5E-40AF-83E5-88BABFE33C36}
 		{AB0F591C-2227-4C12-9490-08FD34C548A5} = {323F29E3-FC5E-40AF-83E5-88BABFE33C36}
 		{0B71489D-93BC-4D5A-B400-488B5FCE624F} = {323F29E3-FC5E-40AF-83E5-88BABFE33C36}
+		{3B80B825-9555-4C7D-9067-211AAF2203C1} = {B2A4E5D8-4152-4B8A-894D-B7FE0F503F7F}
+		{9EC9BF76-A193-4AF0-8334-AB626300A35F} = {B2A4E5D8-4152-4B8A-894D-B7FE0F503F7F}
+		{70F0AEC1-2728-4C1D-AD96-8E6DBE183601} = {B2A4E5D8-4152-4B8A-894D-B7FE0F503F7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83CA2EBE-9BF3-4FA2-B9AA-50A753B51872}

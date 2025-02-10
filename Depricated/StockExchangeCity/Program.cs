@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using StockExchangeCity.CurrentHost.HostBuilder;
+using StockExchangeCity.UI;
 
 namespace StockExchangeCity
 {
@@ -11,13 +12,12 @@ namespace StockExchangeCity
 		[STAThread]
 		static void Main()
 		{
-			// To customize application configuration such as set high DPI settings or default font,
-			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
 			var builder = GameHostBuilder.CreateHostBuilder(services =>
 			{
 				services.AddTransient<Desktop>();
 				services.AddTransient<FormConnect>();
+				services.AddSingleton<FormLog>();
 			});
 
 			var host = builder.Build();

@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry.Resources;
-using StockExchangeCity.UI;
 
 namespace StockExchangeCity.CurrentHost.Logger
 {
@@ -23,8 +22,8 @@ namespace StockExchangeCity.CurrentHost.Logger
 					{
 						conf.SetResourceBuilder(resource);
 						conf.AddProcessor(new LoggerProcessorForm(
-							_loggerFactory.CreateLogger("common"),
-							serviceProvider?.GetRequiredService<FormLog>() ?? throw new ArgumentNullException("FormLog")));
+							_loggerFactory.CreateLogger("common")/*,
+							serviceProvider?.GetRequiredService<FormLog>() ?? throw new ArgumentNullException("FormLog")*/));
 					});
 				})
 				.CreateLogger("default");

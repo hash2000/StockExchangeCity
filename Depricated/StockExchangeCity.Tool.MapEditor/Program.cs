@@ -20,6 +20,8 @@ namespace StockExchangeCity.Tool.MapEditor
 				var dataPath = GameHostBuilder.GetDataPath();
 				services.UseGameUIDesign(dataPath);
 				services.AddTransient<Desktop>();
+				services.AddSingleton<FormLog>();
+				services.UseGameUI(dataPath);
 			});
 
 			var host = builder.Build();

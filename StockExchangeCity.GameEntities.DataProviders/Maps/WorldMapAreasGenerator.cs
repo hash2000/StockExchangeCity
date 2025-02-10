@@ -2,25 +2,19 @@
 using StockExchangeCity.GameEntities.DataProviders.Abstractions;
 using StockExchangeCity.GameEntities.DataProviders.Builders;
 using StockExchangeCity.GameEntities.Map;
-using StockExchangeCity.GameUsers;
-using System.Buffers;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Maps
 {
 	internal class WorldMapAreasGenerator : IWorldMapAreasGenerator
 	{
 		private readonly ILogger _logger;
-		private readonly IGameUsersRepository _users;
 		private readonly IBiomesDataProvider _biomes;
-		private readonly ArrayPool<Location> _locations;
 		private readonly LocationBuilder _locationBuilder = new LocationBuilder(60);
 
 		public WorldMapAreasGenerator(ILogger logger,
-			IGameUsersRepository users,
 			IBiomesDataProvider biomes)
 		{
 			_logger = logger;
-			_users = users;
 			_biomes = biomes;
 		}
 

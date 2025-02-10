@@ -16,10 +16,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StockExchangeCity.CurrentHost\StockExchangeCity.CurrentHost.csproj" />
-    <ProjectReference Include="..\StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj" />
+    <ProjectReference Include="..\..\StockExchangeCity.CurrentHost\StockExchangeCity.CurrentHost.csproj" />
+    <ProjectReference Include="..\..\StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj" />
+    <ProjectReference Include="..\..\StockExchangeCity.Users\StockExchangeCity.GameUsers.csproj" />
     <ProjectReference Include="..\StockExchangeCity.UI\StockExchangeCity.UI.csproj" />
-    <ProjectReference Include="..\StockExchangeCity.Users\StockExchangeCity.GameUsers.csproj" />
   </ItemGroup>
 
   <ItemGroup>

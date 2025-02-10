@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using StockExchangeCity.CurrentHost.Logger;
 using StockExchangeCity.GameEntities.DataProviders;
 using StockExchangeCity.GameUsers;
-using StockExchangeCity.UI;
 
 namespace StockExchangeCity.CurrentHost.HostBuilder
 {
@@ -28,10 +27,8 @@ namespace StockExchangeCity.CurrentHost.HostBuilder
 				.ConfigureServices((context, services) =>
 				{
 					services.AddSingleton(provider => _logger.Value);
-					services.AddSingleton<FormLog>();
 					services.UseMapLoader(dataPath);
 					services.UseGameUsers(dataPath);
-					services.UseGameUI(dataPath);
 
 					serviceBuilder(services);
 				});
@@ -39,14 +36,14 @@ namespace StockExchangeCity.CurrentHost.HostBuilder
 
 		public static void AddLog()
 		{
-			var logform = ServiceProvider?.GetRequiredService<FormLog>();
-			if (logform == null)
-			{
-				return;
-			}
+			//var logform = ServiceProvider?.GetRequiredService<FormLog>();
+			//if (logform == null)
+			//{
+			//	return;
+			//}
 
-			logform.Show();
-			logform.Hide();
+			//logform.Show();
+			//logform.Hide();
 		}
 
 	}

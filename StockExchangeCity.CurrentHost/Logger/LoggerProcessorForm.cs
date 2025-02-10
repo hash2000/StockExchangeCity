@@ -1,19 +1,18 @@
 ﻿using Microsoft.Extensions.Logging;
 using OpenTelemetry;
 using OpenTelemetry.Logs;
-using StockExchangeCity.UI;
 
 namespace StockExchangeCity.CurrentHost.Logger
 {
 	public class LoggerProcessorForm : BaseProcessor<LogRecord>
 	{
 		private readonly ILogger _logger;
-		private readonly FormLog _formLog;
+		//private readonly FormLog _formLog;
 
-		public LoggerProcessorForm(ILogger logger, FormLog formLog)
+		public LoggerProcessorForm(ILogger logger)
 		{
 			_logger = logger;
-			_formLog = formLog;
+			//_formLog = formLog;
 		}
 
 		public override void OnEnd(LogRecord data)
