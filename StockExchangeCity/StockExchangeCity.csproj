@@ -12,7 +12,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.1" />
-    <PackageReference Include="OpenTelemetry" Version="1.10.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.11.1" />
   </ItemGroup>
 
   <ItemGroup>
