@@ -2,15 +2,9 @@
 
 namespace StockExchangeCity.UI.WorldMap
 {
-	public class PanelWorldMapDesign : Panel
+	public partial class PanelWorldMapDesign : Panel
 	{
 		private readonly IWorldMapGenerator _mapAreas;
-		private float _xOffset = 0;
-		private float _yOffset = 0;
-		private float _xOffsetStart = 0;
-		private float _yOffsetStart = 0;
-		private float _scrollOffset = 0;
-		private MouseButtons _mouseSet = MouseButtons.None;
 		private RectangleF _areaRectWindow = new RectangleF();
 		private RectangleF _areaRect = new RectangleF();
 
@@ -20,12 +14,8 @@ namespace StockExchangeCity.UI.WorldMap
 		public PanelWorldMapDesign(IWorldMapGenerator mapsAreas)
 		{
 			_mapAreas = mapsAreas;
-			DoubleBuffered = true;
-			Paint += PanelWorldMap_OnPaint;
-			MouseDown += PanelWorldMap_OnMouseDown;
-			MouseUp += PanelWorldMap_OnMouseUp;
-			MouseMove += PanelWorldMap_OnMouseMove;
-			MouseWheel += PanelWorldMap_MouseWheel;
+			InitializePainting();
+			InitializeMoseEvents();
 			InitializeAreaRects();
 		}
 
@@ -64,102 +54,6 @@ namespace StockExchangeCity.UI.WorldMap
 		{
 			_mapAreas.ClearArea(_areaRect);
 			Refresh();
-		}
-
-		private void PanelWorldMap_MouseWheel(object? sender, MouseEventArgs e)
-		{
-			_scrollOffset -= e.Delta;
-			UpdateAreaRectWindow();
-			Refresh();
-		}
-
-		private void PanelWorldMap_OnMouseMove(object? sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Right && _mouseSet == MouseButtons.Right)
-			{
-				_xOffset += _xOffsetStart - e.X;
-				_yOffset += _yOffsetStart - e.Y;
-				_xOffsetStart = e.X;
-				_yOffsetStart = e.Y;
-				UpdateAreaRectWindow();
-				Refresh();
-				return;
-			}
-		}
-
-		private void PanelWorldMap_OnMouseUp(object? sender, MouseEventArgs e)
-		{
-			if (_mouseSet == MouseButtons.Right)
-			{
-				_xOffsetStart = e.X;
-				_yOffsetStart = e.Y;
-			}
-			else if (_mouseSet == MouseButtons.Left)
-			{
-				var size = GetZoom();
-				float worldX = (e.X + _xOffset) / size;
-				float worldY = (e.Y + _yOffset) / size;
-
-				// Выравниваем по сетке 128x128
-				_areaRect.X = (int)(worldX / 128) * 128;
-				_areaRect.Y = (int)(worldY / 128) * 128;
-
-				if (worldX < 0)
-				{
-					_areaRect.X -= 128;
-				}
-
-				if (worldY < 0)
-				{
-					_areaRect.Y -= 128;
-				}
-
-				UpdateAreaRectWindow();
-				Refresh();
-			}
-
-			_mouseSet = MouseButtons.None;
-		}
-
-		private void PanelWorldMap_OnMouseDown(object? sender, MouseEventArgs e)
-		{
-			_mouseSet = e.Button;
-
-			if (_mouseSet == MouseButtons.Right)
-			{
-				_xOffsetStart = e.X;
-				_yOffsetStart = e.Y;
-			}
-		}
-
-		private void PanelWorldMap_OnPaint(object? sender, PaintEventArgs e)
-		{
-			var g = e.Graphics;
-			var size = GetZoom();
-
-			foreach (var area in _mapAreas.Areas)
-			{
-				foreach (var item in area)
-				{
-					var rect = new RectangleF
-					{
-						X = item.Bounds.X * size - _xOffset,
-						Y = item.Bounds.Y * size - _yOffset,
-						Width = size,
-						Height = size,
-					};
-
-					g.FillRectangle(item.Brush, rect);
-					g.DrawRectangle(_biomeBorderPen, rect);
-				}
-			}
-
-			g.DrawRectangle(_selectedBorderPen, _areaRectWindow);
-		}
-
-		private float GetZoom()
-		{
-			return 8f - _scrollOffset * 0.005f;
 		}
 
 		private void InitializeAreaRects()
