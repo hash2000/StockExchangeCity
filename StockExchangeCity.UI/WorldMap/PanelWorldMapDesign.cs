@@ -1,25 +1,23 @@
 ﻿using StockExchangeCity.GameEntities.DataProviders.Abstractions;
-using StockExchangeCity.GameEntities.Map;
 
 namespace StockExchangeCity.UI.WorldMap
 {
 	public class PanelWorldMapDesign : Panel
 	{
-		private readonly IWorldMapAreasGenerator _mapAreas;
+		private readonly IWorldMapGenerator _mapAreas;
 		private float _xOffset = 0;
 		private float _yOffset = 0;
 		private float _xOffsetStart = 0;
 		private float _yOffsetStart = 0;
 		private float _scrollOffset = 0;
 		private MouseButtons _mouseSet = MouseButtons.None;
-		private List<Area> _areas = new List<Area>();
 		private RectangleF _areaRectWindow = new RectangleF();
 		private RectangleF _areaRect = new RectangleF();
 
 		private readonly Pen _biomeBorderPen = new Pen(Color.Black);
 		private readonly Pen _selectedBorderPen = new Pen(Color.DarkRed, 3);
 
-		public PanelWorldMapDesign(IWorldMapAreasGenerator mapsAreas)
+		public PanelWorldMapDesign(IWorldMapGenerator mapsAreas)
 		{
 			_mapAreas = mapsAreas;
 			DoubleBuffered = true;
@@ -33,8 +31,8 @@ namespace StockExchangeCity.UI.WorldMap
 
 		public async Task GenerateLocationAsync()
 		{
-			var area = await _mapAreas.GenerateAsync(_areaRect);
-			_areas.AddRange(area);
+			await _mapAreas.GenerateAsync(_areaRect);
+
 			/*
 			 // Генерация НП
 				var settlementGenerator = new SettlementGenerator(biomes, descriptors);
@@ -64,7 +62,7 @@ namespace StockExchangeCity.UI.WorldMap
 
 		public void ClearAreas()
 		{
-			_areas.Clear();
+			_mapAreas.ClearArea(_areaRect);
 			Refresh();
 		}
 
@@ -106,7 +104,7 @@ namespace StockExchangeCity.UI.WorldMap
 				_areaRect.X = (int)(worldX / 128) * 128;
 				_areaRect.Y = (int)(worldY / 128) * 128;
 
-				if (worldX < 0) 
+				if (worldX < 0)
 				{
 					_areaRect.X -= 128;
 				}
@@ -139,22 +137,21 @@ namespace StockExchangeCity.UI.WorldMap
 			var g = e.Graphics;
 			var size = GetZoom();
 
-			foreach (var area in _areas)
+			foreach (var area in _mapAreas.Areas)
 			{
-				var rect = new RectangleF
+				foreach (var item in area)
 				{
-					X = area.Location.X * size - _xOffset,
-					Y = area.Location.Y * size - _yOffset,
-					Width = size,
-					Height = size,
-				};
+					var rect = new RectangleF
+					{
+						X = item.Bounds.X * size - _xOffset,
+						Y = item.Bounds.Y * size - _yOffset,
+						Width = size,
+						Height = size,
+					};
 
-				using (var pen = new SolidBrush(area.Color))
-				{
-					g.FillRectangle(pen, rect);
+					g.FillRectangle(item.Brush, rect);
+					g.DrawRectangle(_biomeBorderPen, rect);
 				}
-
-				g.DrawRectangle(_biomeBorderPen, rect);
 			}
 
 			g.DrawRectangle(_selectedBorderPen, _areaRectWindow);

@@ -55,11 +55,21 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 					biome = defaultBiome;
 				}
 
+				var areaColor = ColorTranslator.FromHtml(biome.Color);
+
 				result.Add(new Area
 				{
 					Location = location,
 					Biome = biome,
-					Color = ColorTranslator.FromHtml(biome.Color)
+					Color = areaColor,
+					Brush = new SolidBrush(areaColor),
+					Bounds = new RectangleF
+					{
+						X = location.X,
+						Y = location.Y,
+						Width = 1,
+						Height = 1,
+					}
 				});
 			});
 

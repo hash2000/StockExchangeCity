@@ -6,21 +6,21 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 {
 	internal abstract class BaseBiomesDataProvider : IBiomesDataProvider
 	{
-		public SortedSet<Biome> Biomes { get; } = new SortedSet<Biome>(Comparer<Biome>.Create((x, y) =>
+		public SortedSet<Biome> Biomes { get; } = new SortedSet<Biome>(Comparer<Biome>.Create((left, right) =>
 		{
-			var teight = x.Height.Min.CompareTo(y.Height.Min);
+			var teight = left.Height.Min.CompareTo(right.Height.Min);
 			if (teight != 0)
 			{
 				return teight;
 			}
 
-			var humidity = x.Humidity.Min.CompareTo(y.Humidity.Min);
+			var humidity = left.Humidity.Min.CompareTo(right.Humidity.Min);
 			if (humidity != 0)
 			{
 				return humidity;
 			}
 
-			return x.Temperature.Min.CompareTo(y.Temperature.Min);
+			return left.Temperature.Min.CompareTo(right.Temperature.Min);
 		}));
 
 		public abstract Task LoadAsync();

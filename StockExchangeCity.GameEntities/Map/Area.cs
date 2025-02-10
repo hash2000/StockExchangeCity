@@ -1,9 +1,11 @@
-﻿namespace StockExchangeCity.GameEntities.Map
+﻿using StockExchangeCity.Base.Collections;
+
+namespace StockExchangeCity.GameEntities.Map
 {
 	/// <summary>
 	/// область на карте
 	/// </summary>
-	public class Area
+	public class Area : IQuadTreeItem
 	{
 		/// <summary>
 		/// описание локации
@@ -19,5 +21,9 @@
 		/// свеб на карте (берётся из биома)
 		/// </summary>
 		public Color Color { get; set; }
+
+		public Brush Brush { get; set; }
+
+		public RectangleF Bounds {  get; set; }
 	}
 }

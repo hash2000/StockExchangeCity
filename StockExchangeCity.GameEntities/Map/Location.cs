@@ -1,12 +1,10 @@
-﻿using StockExchangeCity.Base.Coordinates;
-
-namespace StockExchangeCity.GameEntities.Map
+﻿namespace StockExchangeCity.GameEntities.Map
 {
 	/// <summary>
 	/// Локация 
 	/// - одна точка на карте, с характеристиками
 	/// </summary>
-	public class Location : IPosition
+	public class Location
 	{
 		/// <summary>
 		/// позиция x

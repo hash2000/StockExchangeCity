@@ -1,144 +1,174 @@
-﻿using StockExchangeCity.Base.Coordinates;
+﻿using System.Collections;
+using System.Drawing;
 
 namespace StockExchangeCity.Base.Collections
 {
-    public class QuadTree<T> where T : IPosition
+	public class QuadTree<T> : IEnumerable<T> where T : IQuadTreeItem
 	{
-		private class Node
+		private const int MaxObjects = 4;
+		private const int MaxLevels = 5;
+
+		private readonly List<T> _objects = new();
+		private readonly QuadTree<T>?[] _nodes = new QuadTree<T>[4];
+		private readonly RectangleF _bounds;
+		private readonly int _level;
+
+		public RectangleF Bounds => _bounds;
+
+		public QuadTree(RectangleF bounds, int level = 0)
 		{
-			public float X, Y, Width, Height;
-			public List<T> Items = new List<T>();
-			public Node[] Children = new Node[4];
+			_bounds = bounds;
+			_level = level;
 		}
 
-		private Node _root;
-
-		public QuadTree(float x, float y, float width, float height)
+		public void Clear()
 		{
-			_root = new Node
+			_objects.Clear();
+			for (int i = 0; i < _nodes.Length; i++)
 			{
-				X = x,
-				Y = y,
-				Width = width,
-				Height = height
-			};
+				_nodes[i]?.Clear();
+				_nodes[i] = null;
+			}
 		}
 
-		public void Insert(float x, float y, T item)
+		public void Insert(T item)
 		{
-			Insert(_root, x, y, item);
-		}
+			if (!_bounds.IntersectsWith(item.Bounds))
+				return;
 
-		private void Insert(Node node, float x, float y, T item)
-		{
-			if (node.Children == null)
+			if (_nodes[0] != null)
 			{
-				node.Items.Add(item);
-
-				// Примерное ограничение
-				if (node.Items.Count > 4)
+				int index = GetIndex(item.Bounds);
+				if (index != -1)
 				{
-					Split(node);
+					_nodes[index].Insert(item);
+					return;
 				}
 			}
-			else
+
+			_objects.Add(item);
+
+			if (_objects.Count > MaxObjects && _level < MaxLevels && _nodes[0] == null)
 			{
-				int index = GetIndex(node, x, y);
-				Insert(node.Children[index], x, y, item);
+				Split();
+				RedistributeObjects();
 			}
 		}
 
-		public List<T> Query(float x, float y, float width, float height)
+		public List<T> Query(RectangleF area)
 		{
-			var result = new List<T>();
-			Query(_root, x, y, width, height, result);
+			List<T> result = new();
+			Query(area, result);
 			return result;
 		}
 
-		private void Query(Node node, float x, float y, float width, float height, List<T> result)
+		private void Query(RectangleF area, List<T> result)
 		{
-			if (node.X + node.Width < x ||
-				node.Y + node.Height < y ||
-				node.X > x + width ||
-				node.Y > y + height)
+			if (!_bounds.IntersectsWith(area))
 			{
 				return;
 			}
 
-			result.AddRange(node.Items);
-
-			if (node.Children != null)
+			foreach (T item in _objects)
 			{
-				foreach (var child in node.Children)
+				if (area.IntersectsWith(item.Bounds))
 				{
-					Query(child, x, y, width, height, result);
+					result.Add(item);
+				}
+			}
+
+			if (_nodes[0] == null) return;
+
+			foreach (var node in _nodes)
+			{
+				node.Query(area, result);
+			}
+		}
+		private void Split()
+		{
+			int subWidth = (int)_bounds.Width / 2;
+			int subHeight = (int)_bounds.Height / 2;
+			int x = (int)_bounds.X;
+			int y = (int)_bounds.Y;
+
+			_nodes[0] = new QuadTree<T>(new Rectangle(x, y, subWidth, subHeight), _level + 1);
+			_nodes[1] = new QuadTree<T>(new Rectangle(x + subWidth, y, subWidth, subHeight), _level + 1);
+			_nodes[2] = new QuadTree<T>(new Rectangle(x, y + subHeight, subWidth, subHeight), _level + 1);
+			_nodes[3] = new QuadTree<T>(new Rectangle(x + subWidth, y + subHeight, subWidth, subHeight), _level + 1);
+		}
+
+		private void RedistributeObjects()
+		{
+			for (int i = _objects.Count - 1; i >= 0; i--)
+			{
+				T item = _objects[i];
+				int index = GetIndex(item.Bounds);
+
+				if (index != -1)
+				{
+					_nodes[index].Insert(item);
+					_objects.RemoveAt(i);
 				}
 			}
 		}
 
-		private void Split(Node node)
+		private int GetIndex(RectangleF rect)
 		{
-			float halfWidth = node.Width / 2;
-			float halfHeight = node.Height / 2;
+			int index = -1;
+			double verticalMidpoint = _bounds.X + (_bounds.Width / 2);
+			double horizontalMidpoint = _bounds.Y + (_bounds.Height / 2);
 
-			node.Children = new Node[4];
-			node.Children[0] = new Node
+			bool topQuadrant = rect.Y < horizontalMidpoint &&
+				rect.Y + rect.Height < horizontalMidpoint;
+			bool bottomQuadrant = rect.Y > horizontalMidpoint;
+
+			if (rect.X < verticalMidpoint && rect.X + rect.Width < verticalMidpoint)
 			{
-				X = node.X,
-				Y = node.Y,
-				Width = halfWidth,
-				Height = halfHeight
-			};
-
-			node.Children[1] = new Node
+				if (topQuadrant)
+				{
+					index = 0;
+				}
+				else if (bottomQuadrant)
+				{
+					index = 2;
+				}
+			}
+			else if (rect.X > verticalMidpoint)
 			{
-				X = node.X + halfWidth,
-				Y = node.Y,
-				Width = halfWidth,
-				Height = halfHeight
-			};
-
-			node.Children[2] = new Node
-			{
-				X = node.X,
-				Y = node.Y + halfHeight,
-				Width = halfWidth,
-				Height = halfHeight
-			};
-
-			node.Children[3] = new Node
-			{
-				X = node.X + halfWidth,
-				Y = node.Y + halfHeight,
-				Width = halfWidth,
-				Height = halfHeight
-			};
-
-			foreach (var item in node.Items)
-			{
-				// Определяем позицию элемента относительно дочерних нод
-				int index = GetIndex(node, item.X, item.Y);
-
-				// Рекурсивно вставляем элемент в соответствующую дочернюю ноду
-				Insert(node.Children[index], item.X, item.Y, item);
+				if (topQuadrant)
+				{
+					index = 1;
+				}
+				else if (bottomQuadrant)
+				{
+					index = 3;
+				}
 			}
 
-			node.Items.Clear();
+			return index;
 		}
 
-		private int GetIndex(Node node, float x, float y)
+		public IEnumerator<T> GetEnumerator()
 		{
-			bool left = x < node.X + node.Width / 2;
-			bool top = y < node.Y + node.Height / 2;
-
-			if (left)
+			foreach (T item in _objects)
 			{
-				return top ? 0 : 2;
+				yield return item;
 			}
-			else
+
+			if (_nodes[0] == null)
 			{
-				return top ? 1 : 3;
+				yield break;
+			}
+
+			foreach (var node in _nodes)
+			{
+				foreach (T childItem in node)
+				{
+					yield return childItem;
+				}
 			}
 		}
+
+		IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 	}
 }
