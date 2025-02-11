@@ -1,5 +1,5 @@
-﻿using StockExchangeCity.Base.Collections;
-using System.Drawing;
+﻿using SkiaSharp;
+using StockExchangeCity.Base.Collections;
 
 namespace StockExchangeCity.GameEntities.Map
 {
@@ -21,10 +21,10 @@ namespace StockExchangeCity.GameEntities.Map
 		/// <summary>
 		/// свеб на карте (берётся из биома)
 		/// </summary>
-		public Color Color { get; set; }
+		public SKColor Color { get; set; }
 
 		//public Brush Brush { get; set; }
 
-		public RectangleF Bounds {  get; set; }
+		public SKRect Bounds {  get; set; }
 	}
 }

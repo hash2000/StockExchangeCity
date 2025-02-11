@@ -1,5 +1,5 @@
-﻿using StockExchangeCity.GameEntities.Map;
-using System.Drawing;
+﻿using SkiaSharp;
+using StockExchangeCity.GameEntities.Map;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 {
@@ -11,6 +11,6 @@ namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 
 		Task<List<Area>> GenerateAsync(float x, float y, float width, float height);
 
-		Task<List<Area>> GenerateAsync(RectangleF rectangle);
+		Task<List<Area>> GenerateAsync(SKRect rectangle);
 	}
 }

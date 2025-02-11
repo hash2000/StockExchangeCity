@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Drawing;
+﻿using SkiaSharp;
+using System.Collections;
 
 namespace StockExchangeCity.Base.Collections
 {
@@ -10,12 +10,12 @@ namespace StockExchangeCity.Base.Collections
 
 		private readonly List<T> _objects = new();
 		private readonly QuadTree<T>?[] _nodes = new QuadTree<T>[4];
-		private readonly RectangleF _bounds;
+		private readonly SKRect _bounds;
 		private readonly int _level;
 
-		public RectangleF Bounds => _bounds;
+		public SKRect Bounds => _bounds;
 
-		public QuadTree(RectangleF bounds, int level = 0)
+		public QuadTree(SKRect bounds, int level = 0)
 		{
 			_bounds = bounds;
 			_level = level;
@@ -55,14 +55,14 @@ namespace StockExchangeCity.Base.Collections
 			}
 		}
 
-		public List<T> Query(RectangleF area)
+		public List<T> Query(SKRect area)
 		{
 			List<T> result = new();
 			Query(area, result);
 			return result;
 		}
 
-		private void Query(RectangleF area, List<T> result)
+		private void Query(SKRect area, List<T> result)
 		{
 			if (!_bounds.IntersectsWith(area))
 			{
@@ -88,13 +88,13 @@ namespace StockExchangeCity.Base.Collections
 		{
 			int subWidth = (int)_bounds.Width / 2;
 			int subHeight = (int)_bounds.Height / 2;
-			int x = (int)_bounds.X;
-			int y = (int)_bounds.Y;
+			int x = (int)_bounds.Left;
+			int y = (int)_bounds.Top;
 
-			_nodes[0] = new QuadTree<T>(new Rectangle(x, y, subWidth, subHeight), _level + 1);
-			_nodes[1] = new QuadTree<T>(new Rectangle(x + subWidth, y, subWidth, subHeight), _level + 1);
-			_nodes[2] = new QuadTree<T>(new Rectangle(x, y + subHeight, subWidth, subHeight), _level + 1);
-			_nodes[3] = new QuadTree<T>(new Rectangle(x + subWidth, y + subHeight, subWidth, subHeight), _level + 1);
+			_nodes[0] = new QuadTree<T>(new SKRect(x, y, subWidth, subHeight), _level + 1);
+			_nodes[1] = new QuadTree<T>(new SKRect(x + subWidth, y, subWidth, subHeight), _level + 1);
+			_nodes[2] = new QuadTree<T>(new SKRect(x, y + subHeight, subWidth, subHeight), _level + 1);
+			_nodes[3] = new QuadTree<T>(new SKRect(x + subWidth, y + subHeight, subWidth, subHeight), _level + 1);
 		}
 
 		private void RedistributeObjects()
@@ -112,17 +112,17 @@ namespace StockExchangeCity.Base.Collections
 			}
 		}
 
-		private int GetIndex(RectangleF rect)
+		private int GetIndex(SKRect rect)
 		{
 			int index = -1;
-			double verticalMidpoint = _bounds.X + (_bounds.Width / 2);
-			double horizontalMidpoint = _bounds.Y + (_bounds.Height / 2);
+			double verticalMidpoint = _bounds.Left + (_bounds.Width / 2);
+			double horizontalMidpoint = _bounds.Top + (_bounds.Height / 2);
 
-			bool topQuadrant = rect.Y < horizontalMidpoint &&
-				rect.Y + rect.Height < horizontalMidpoint;
-			bool bottomQuadrant = rect.Y > horizontalMidpoint;
+			bool topQuadrant = rect.Top < horizontalMidpoint &&
+				rect.Top + rect.Height < horizontalMidpoint;
+			bool bottomQuadrant = rect.Top > horizontalMidpoint;
 
-			if (rect.X < verticalMidpoint && rect.X + rect.Width < verticalMidpoint)
+			if (rect.Left < verticalMidpoint && rect.Left + rect.Width < verticalMidpoint)
 			{
 				if (topQuadrant)
 				{
@@ -133,7 +133,7 @@ namespace StockExchangeCity.Base.Collections
 					index = 2;
 				}
 			}
-			else if (rect.X > verticalMidpoint)
+			else if (rect.Left > verticalMidpoint)
 			{
 				if (topQuadrant)
 				{

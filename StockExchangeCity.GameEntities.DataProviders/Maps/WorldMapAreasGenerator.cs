@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using SkiaSharp;
 using StockExchangeCity.GameEntities.DataProviders.Abstractions;
 using StockExchangeCity.GameEntities.DataProviders.Builders;
 using StockExchangeCity.GameEntities.Map;
-using System.Drawing;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Maps
 {
@@ -19,11 +19,11 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 			_biomes = biomes;
 		}
 
-		public async Task<List<Area>> GenerateAsync(RectangleF rectangle)
+		public async Task<List<Area>> GenerateAsync(SKRect rectangle)
 		{
 			return await GenerateAsync(
-				rectangle.X,
-				rectangle.Y,
+				rectangle.Left,
+				rectangle.Top,
 				rectangle.Width,
 				rectangle.Height);
 		}
@@ -50,7 +50,10 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 					biome = defaultBiome;
 				}
 
-				var areaColor = ColorTranslator.FromHtml(biome.Color);
+				if (!SKColor.TryParse(biome.Color, out var areaColor))
+				{
+					areaColor = SKColors.DarkViolet;
+				}
 
 				result.Add(new Area
 				{
@@ -58,12 +61,12 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 					Biome = biome,
 					Color = areaColor,
 				//	Brush = new SolidBrush(areaColor),
-					Bounds = new RectangleF
+					Bounds = new SKRect
 					{
-						X = location.X,
-						Y = location.Y,
-						Width = 1,
-						Height = 1,
+						Left = location.X,
+						Top = location.Y,
+						Right = location.X + 1,
+						Bottom =  location.Y + 1,
 					}
 				});
 			});

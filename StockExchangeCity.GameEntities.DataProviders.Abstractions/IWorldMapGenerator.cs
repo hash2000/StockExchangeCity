@@ -1,6 +1,6 @@
-﻿using StockExchangeCity.Base.Collections;
+﻿using SkiaSharp;
+using StockExchangeCity.Base.Collections;
 using StockExchangeCity.GameEntities.Map;
-using System.Drawing;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 {
@@ -8,11 +8,11 @@ namespace StockExchangeCity.GameEntities.DataProviders.Abstractions
 	{
 		SortedSet<QuadTree<Area>> Areas { get; }
 
-		Task GenerateAsync(RectangleF areaRect);
+		Task GenerateAsync(SKRect areaRect);
 
-		QuadTree<Area>? Find(RectangleF areaRect);
+		QuadTree<Area>? Find(SKRect areaRect);
 
-		void ClearArea(RectangleF areaRect);
+		void ClearArea(SKRect areaRect);
 
 		void Clear();
 	}

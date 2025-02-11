@@ -1,9 +1,9 @@
-﻿using System.Drawing;
+﻿using SkiaSharp;
 
 namespace StockExchangeCity.Base.Collections
 {
 	public interface IQuadTreeItem
 	{
-		RectangleF Bounds { get; }
+		SKRect Bounds { get; }
 	}
 }

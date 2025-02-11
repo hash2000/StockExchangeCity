@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using SkiaSharp;
 using StockExchangeCity.Base.Collections;
 using StockExchangeCity.GameEntities.DataProviders.Abstractions;
 using StockExchangeCity.GameEntities.Map;
-using System.Drawing;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Maps
 {
@@ -14,13 +14,13 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 		private SortedSet<QuadTree<Area>> _areas =
 			new SortedSet<QuadTree<Area>>(Comparer<QuadTree<Area>>.Create((left, right) =>
 			{
-				var cx = left.Bounds.X.CompareTo(right.Bounds.X);
+				var cx = left.Bounds.Left.CompareTo(right.Bounds.Left);
 				if (cx != 0)
 				{
 					return cx;
 				}
 
-				return left.Bounds.Y.CompareTo(right.Bounds.Y);
+				return left.Bounds.Top.CompareTo(right.Bounds.Top);
 			}));
 
 		public SortedSet<QuadTree<Area>> Areas => _areas;
@@ -32,7 +32,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 			_logger = logger;
 		}
 
-		public void ClearArea(RectangleF areaRect)
+		public void ClearArea(SKRect areaRect)
 		{
 			var area = Find(areaRect);
 			if (area == null)
@@ -48,12 +48,12 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 			_areas.Clear();
 		}
 
-		public async Task GenerateAsync(RectangleF areaRect)
+		public async Task GenerateAsync(SKRect areaRect)
 		{
 			var definedArea = Find(areaRect);
 			if (definedArea != null)
 			{
-				_logger.LogWarning($"Область {areaRect.X}, {areaRect.Y}, {areaRect.Width}, {areaRect.Height}");
+				_logger.LogWarning($"Область {areaRect.Left}, {areaRect.Top}, {areaRect.Width}, {areaRect.Height}");
 				return;
 			}
 
@@ -67,7 +67,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 			}
 		}
 
-		public QuadTree<Area>? Find(RectangleF areaRect)
+		public QuadTree<Area>? Find(SKRect areaRect)
 		{
 			foreach (var item in _areas)
 			{
