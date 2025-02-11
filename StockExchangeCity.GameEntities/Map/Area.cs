@@ -1,4 +1,5 @@
 ﻿using StockExchangeCity.Base.Collections;
+using System.Drawing;
 
 namespace StockExchangeCity.GameEntities.Map
 {
@@ -22,7 +23,7 @@ namespace StockExchangeCity.GameEntities.Map
 		/// </summary>
 		public Color Color { get; set; }
 
-		public Brush Brush { get; set; }
+		//public Brush Brush { get; set; }
 
 		public RectangleF Bounds {  get; set; }
 	}

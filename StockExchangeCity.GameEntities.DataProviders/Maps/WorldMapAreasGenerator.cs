@@ -2,6 +2,7 @@
 using StockExchangeCity.GameEntities.DataProviders.Abstractions;
 using StockExchangeCity.GameEntities.DataProviders.Builders;
 using StockExchangeCity.GameEntities.Map;
+using System.Drawing;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Maps
 {
@@ -56,7 +57,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Maps
 					Location = location,
 					Biome = biome,
 					Color = areaColor,
-					Brush = new SolidBrush(areaColor),
+				//	Brush = new SolidBrush(areaColor),
 					Bounds = new RectangleF
 					{
 						X = location.X,
