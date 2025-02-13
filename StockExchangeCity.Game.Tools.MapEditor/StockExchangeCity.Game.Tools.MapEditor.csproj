@@ -59,7 +59,19 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\StockExchangeCity.CurrentHost\StockExchangeCity.CurrentHost.csproj" />
+	  <ProjectReference Include="..\StockExchangeCity.GameEntities\StockExchangeCity.GameEntities.csproj" />
+	  <ProjectReference Include="..\StockExchangeCity.UI\StockExchangeCity.UI.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\BiomesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

@@ -188,7 +188,7 @@ namespace StockExchangeCity.Tool.MapEditor
 
 		private async void BtnSaveBiomes_Click(object sender, EventArgs e)
 		{
-			var result = MessageBox.Show("Вы действительно хотите сохранить изменения?", "Сохранить?",
+			var result = MessageBox.Show("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ СЃРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ?", "РЎРѕС…СЂР°РЅРёС‚СЊ?",
 				MessageBoxButtons.OKCancel);
 			if (result != DialogResult.OK)
 			{
@@ -200,7 +200,7 @@ namespace StockExchangeCity.Tool.MapEditor
 		}
 		private void BtnLoadBiomes_Click(object sender, EventArgs e)
 		{
-			var result = MessageBox.Show("Вы действительно хотите восстановить предыдущие значения?", "Восстановить?",
+			var result = MessageBox.Show("Р’С‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ С…РѕС‚РёС‚Рµ РІРѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РїСЂРµРґС‹РґСѓС‰РёРµ Р·РЅР°С‡РµРЅРёСЏ?", "Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ?",
 				MessageBoxButtons.OKCancel);
 			if (result != DialogResult.OK)
 			{

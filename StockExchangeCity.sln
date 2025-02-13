@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{36D591C7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeCity.Game.Tools.MapEditor", "StockExchangeCity.Game.Tools.MapEditor\StockExchangeCity.Game.Tools.MapEditor.csproj", "{3757367A-2A44-4A6B-B8C9-0F01B5D45B25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchangeCity.UI", "StockExchangeCity.UI\StockExchangeCity.UI.csproj", "{F2242DCA-B479-4A4D-A9B0-C2B623DF17BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{3757367A-2A44-4A6B-B8C9-0F01B5D45B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3757367A-2A44-4A6B-B8C9-0F01B5D45B25}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3757367A-2A44-4A6B-B8C9-0F01B5D45B25}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F2242DCA-B479-4A4D-A9B0-C2B623DF17BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2242DCA-B479-4A4D-A9B0-C2B623DF17BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2242DCA-B479-4A4D-A9B0-C2B623DF17BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2242DCA-B479-4A4D-A9B0-C2B623DF17BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +98,7 @@ Global
 		{9EC9BF76-A193-4AF0-8334-AB626300A35F} = {B2A4E5D8-4152-4B8A-894D-B7FE0F503F7F}
 		{70F0AEC1-2728-4C1D-AD96-8E6DBE183601} = {B2A4E5D8-4152-4B8A-894D-B7FE0F503F7F}
 		{3757367A-2A44-4A6B-B8C9-0F01B5D45B25} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
+		{F2242DCA-B479-4A4D-A9B0-C2B623DF17BF} = {323F29E3-FC5E-40AF-83E5-88BABFE33C36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {83CA2EBE-9BF3-4FA2-B9AA-50A753B51872}

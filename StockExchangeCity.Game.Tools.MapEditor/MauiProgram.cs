@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using StockExchangeCity.CurrentHost.HostBuilder;
 
 namespace StockExchangeCity.Game.Tools.MapEditor;
 
@@ -13,11 +14,13 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+			})
+			.ConfigureMauiHandlers(handles =>
+			{
+				handles.AddMauiControlsHandlers();
 			});
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+		builder.Services.ConfigureGameHostServices();
 
 		return builder.Build();
 	}

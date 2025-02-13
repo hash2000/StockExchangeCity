@@ -4,9 +4,14 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:StockExchangeCity.Game.Tools.MapEditor"
-    Shell.FlyoutBehavior="Disabled"
+	xmlns:views="clr-namespace:StockExchangeCity.Game.Tools.MapEditor.Views"
+    Shell.FlyoutBehavior="Flyout"
     Title="StockExchangeCity.Game.Tools.MapEditor">
 
+	<FlyoutItem Title="Настройка биомов">
+		<ShellContent ContentTemplate="{DataTemplate views:BiomesPage}"/>
+	</FlyoutItem>
+	
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
