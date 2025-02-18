@@ -5,7 +5,7 @@ namespace StockExchangeCity.GameUsers
 {
 	public static class GameUsersModdleware
 	{
-		public static IServiceCollection UseGameUsers(this IServiceCollection services, string dataPath)
+		public static IServiceCollection UseGameUsers(this IServiceCollection services)
 		{
 			services.AddSingleton<IGameUsersRepository, GameUsersRepositoryInMemory>();
 			return services;
