@@ -29,7 +29,7 @@ namespace StockExchangeCity.GameEntities.Map
 		/// <summary>
 		/// Биомы, которые занимает НП
 		/// </summary>
-		public List<Location> OccupiedBiomes { get; set; } = new List<Location>();
+		public List<MapLocation> OccupiedBiomes { get; set; } = new List<MapLocation>();
 
 		/// <summary>
 		/// Связанные НП

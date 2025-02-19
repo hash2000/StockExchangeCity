@@ -11,7 +11,7 @@ namespace StockExchangeCity.GameEntities.Map
 		/// <summary>
 		/// описание локации
 		/// </summary>
-		public Location Location { get; set; }
+		public MapLocation Location { get; set; }
 
 		/// <summary>
 		/// биом

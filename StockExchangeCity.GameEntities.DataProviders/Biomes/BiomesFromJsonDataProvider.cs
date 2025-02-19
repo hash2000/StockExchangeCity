@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using StockExchangeCity.Data.Loaders;
 using StockExchangeCity.GameEntities.Map;
 
 namespace StockExchangeCity.GameEntities.DataProviders.Biomes
@@ -18,23 +19,21 @@ namespace StockExchangeCity.GameEntities.DataProviders.Biomes
 
 		public override async Task LoadAsync()
 		{
-			//var bioms = JsonConvert.DeserializeObject<BiomesList>(await EmbeddedJsonLoader);
-			//if (bioms?.Items == null)
-			//{
-			//	return;
-			//}
+			var bioms = JsonConvert.DeserializeObject<BiomesList>(await EmbeddedJsonLoader.GetPrefabsSource("biomes.json"));
+			if (bioms?.Items == null)
+			{
+				return;
+			}
 
-			//var fileName = new FileInfo(_biomesPath).Name;
+			foreach (var item in bioms.Items)
+			{
+				if (FindByName(item.Name) != null)
+				{
+					RemoveByName(item.Name);
+				}
 
-			//foreach (var item in bioms.Items)
-			//{
-			//	if (FindByName(item.Name) != null)
-			//	{
-			//		RemoveByName(item.Name);
-			//	}
-
-			//	Biomes.Add(item);
-			//}
+				Biomes.Add(item);
+			}
 		}
 
 	}

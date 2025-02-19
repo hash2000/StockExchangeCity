@@ -4,7 +4,7 @@
 	/// Локация 
 	/// - одна точка на карте, с характеристиками
 	/// </summary>
-	public class Location
+	public class MapLocation
 	{
 		/// <summary>
 		/// позиция x

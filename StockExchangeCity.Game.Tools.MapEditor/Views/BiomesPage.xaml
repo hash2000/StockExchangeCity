@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns:biomes="clr-namespace:StockExchangeCity.UI.Biomes;assembly=StockExchangeCity.UI"
-             x:Class="StockExchangeCity.Game.Tools.MapEditor.Views.BiomesPage"
+			 xmlns:ui="clr-namespace:StockExchangeCity.UI.Biomes;assembly=StockExchangeCity.UI"
+			 xmlns:biomes="clr-namespace:StockExchangeCity.GameEntities.Map;assembly=StockExchangeCity.GameEntities"
+			 x:Class="StockExchangeCity.Game.Tools.MapEditor.Views.BiomesPage"
              Title="BiomesPage">
-    <VerticalStackLayout>
+	<VerticalStackLayout>
 		<ListView 
-			ItemsSource="{Binding Items}">
+			ItemsSource="{Binding Items}"
+			Header="Header"
+			Footer="Footer"
+			HasUnevenRows="True"
+			SeparatorVisibility="None">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<ViewCell>
@@ -16,9 +21,12 @@
 									<ColumnDefinition Width="48"/>
 									<ColumnDefinition Width="*"/>
 								</Grid.ColumnDefinitions>
-								<Label
+								<Label Grid.Column="1" 
+									   Text="{Binding Name}" />
+								<ui:BiomeCardView 
 									Grid.Column="1"
-									Text="{Binding Name}"/>
+									BiomeItem="{Binding ., Converter={StaticResource DebugConverter}}"/>
+
 							</Grid>
 						</ScrollView>
 					</ViewCell>

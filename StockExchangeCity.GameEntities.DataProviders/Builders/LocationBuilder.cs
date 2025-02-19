@@ -27,7 +27,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 			_humidityNoise = new Perlin2D(speed + 2);
 		}
 
-		public void Build(float xPos, float yPos, float mapWidth, float mapHeight, Action<Location> action)
+		public void Build(float xPos, float yPos, float mapWidth, float mapHeight, Action<MapLocation> action)
 		{
 			
 
@@ -69,7 +69,7 @@ namespace StockExchangeCity.GameEntities.DataProviders.Builders
 					temperatureValue = Math.Clamp(temperatureValue, MinTemperature, MaxTemperature);
 					humidityValue = Math.Clamp(humidityValue, MinHumidity, MaxHumidity);
 
-					var location = new Location();
+					var location = new MapLocation();
 
 					location.Height = heightValue;
 					location.Temperature = temperatureValue;

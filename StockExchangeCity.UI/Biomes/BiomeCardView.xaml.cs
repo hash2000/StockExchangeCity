@@ -1,5 +1,4 @@
 using StockExchangeCity.GameEntities.Map;
-using System.Runtime.InteropServices;
 
 namespace StockExchangeCity.UI.Biomes;
 
@@ -20,7 +19,7 @@ public partial class BiomeCardView : ContentView
 	#region HeightMin
 	public static readonly BindableProperty HeightMinProperty =
 		BindableProperty.Create(
-			nameof(HeightMin), typeof(float), typeof(BiomeCardView), 0);
+			nameof(HeightMin), typeof(float), typeof(BiomeCardView), 0f);
 
 	public float HeightMin
 	{
@@ -32,7 +31,7 @@ public partial class BiomeCardView : ContentView
 	#region HeightMax
 	public static readonly BindableProperty HeightMaxProperty =
 		BindableProperty.Create(
-			nameof(HeightMax), typeof(float), typeof(BiomeCardView), 0);
+			nameof(HeightMax), typeof(float), typeof(BiomeCardView), 0f);
 
 	public float HeightMax
 	{
@@ -44,7 +43,7 @@ public partial class BiomeCardView : ContentView
 	#region TemperatureMin
 	public static readonly BindableProperty TemperatureMinProperty =
 		BindableProperty.Create(
-			nameof(TemperatureMin), typeof(float), typeof(BiomeCardView), 0);
+			nameof(TemperatureMin), typeof(float), typeof(BiomeCardView), 0f);
 
 	public float TemperatureMin
 	{
@@ -56,7 +55,7 @@ public partial class BiomeCardView : ContentView
 	#region TemperatureMax
 	public static readonly BindableProperty TemperatureMaxProperty =
 		BindableProperty.Create(
-			nameof(TemperatureMax), typeof(float), typeof(BiomeCardView), 0);
+			nameof(TemperatureMax), typeof(float), typeof(BiomeCardView), 0f);
 
 	public float TemperatureMax
 	{
@@ -68,7 +67,7 @@ public partial class BiomeCardView : ContentView
 	#region HumidityMin
 	public static readonly BindableProperty HumidityMinProperty =
 		BindableProperty.Create(
-			nameof(HumidityMin), typeof(float), typeof(BiomeCardView), 0);
+			nameof(HumidityMin), typeof(float), typeof(BiomeCardView), 0f);
 
 	public float HumidityMin
 	{
@@ -80,7 +79,7 @@ public partial class BiomeCardView : ContentView
 	#region HumidityMax
 	public static readonly BindableProperty HumidityMaxProperty =
 		BindableProperty.Create(
-			nameof(HumidityMax), typeof(float), typeof(BiomeCardView), 0);
+			nameof(HumidityMax), typeof(float), typeof(BiomeCardView), 0f);
 
 	public float HumidityMax
 	{
@@ -137,18 +136,18 @@ public partial class BiomeCardView : ContentView
 	}
 	#endregion
 
-	#region Biome
-	public static readonly BindableProperty BiomeProperty =
+	#region BiomeItem
+	public static readonly BindableProperty BiomeItemProperty =
 	BindableProperty.Create(
-		nameof(BiomeItem), typeof(Biome), typeof(BiomeCardView), null);
+		nameof(BiomeItem), typeof(Biome), typeof(BiomeCardView));
 
 	public Biome BiomeItem
 	{
-		get => (Biome)GetValue(CardBorderColorProperty);
+		get => (Biome)GetValue(BiomeItemProperty);
 		set
 		{
 			AppendModel(value);
-			SetValue(CardBorderColorProperty, value);
+			SetValue(BiomeItemProperty, value);
 		}
 	}
 	#endregion
