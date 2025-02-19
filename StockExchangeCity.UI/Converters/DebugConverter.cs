@@ -2,6 +2,13 @@
 
 namespace StockExchangeCity.UI.Converters
 {
+	/*
+	 Для отладки xaml. Пример
+	<ui:BiomeCardView 
+		Grid.Column="1"
+		BiomeItem="{Binding ., Converter={StaticResource DebugConverter}}"/>	 
+	 */
+
 	public class DebugConverter : IValueConverter
 	{
 		public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)

@@ -5,33 +5,28 @@
 			 xmlns:biomes="clr-namespace:StockExchangeCity.GameEntities.Map;assembly=StockExchangeCity.GameEntities"
 			 x:Class="StockExchangeCity.Game.Tools.MapEditor.Views.BiomesPage"
              Title="BiomesPage">
-	<VerticalStackLayout>
-		<ListView 
+	<ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always">
+		<VerticalStackLayout x:Name="BiomesPageVerticalStack">
+			<ListView x:Name="BiomesNameListView"
 			ItemsSource="{Binding Items}"
-			Header="Header"
-			Footer="Footer"
-			HasUnevenRows="True"
+			HasUnevenRows="false"
 			SeparatorVisibility="None">
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<ViewCell>
-						<ScrollView>
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
 							<Grid>
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="48"/>
-									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="Auto"/>
 								</Grid.ColumnDefinitions>
-								<Label Grid.Column="1" 
-									   Text="{Binding Name}" />
 								<ui:BiomeCardView 
 									Grid.Column="1"
-									BiomeItem="{Binding ., Converter={StaticResource DebugConverter}}"/>
-
+									BiomeItem="{Binding .}"/>
 							</Grid>
-						</ScrollView>
-					</ViewCell>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
-	</VerticalStackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</VerticalStackLayout>
+	</ScrollView>
 </ContentPage>

@@ -9,11 +9,44 @@
 		HasShadow="True"
 		Padding="8"
 		VerticalOptions="Center"
-		HorizontalOptions="Center"
+		HorizontalOptions="Start"
 		Margin="0, 12, 0, 0">
-		<Label 
-            Text="{Binding BiomeName}"			
-            VerticalOptions="Center" 
-            HorizontalOptions="Start" />
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="40" />
+				<RowDefinition Height="4" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="10" />
+				<ColumnDefinition Width="200" />
+				<ColumnDefinition Width="40" />
+			</Grid.ColumnDefinitions>
+			<Label 
+				Grid.Column="1"
+				Text="{Binding BiomeName, FallbackValue='Biome name'}"
+				FontAttributes="Bold"
+				FontSize="Default"
+				VerticalOptions="Start" 
+				HorizontalOptions="Start" />
+
+			<BoxView
+                Grid.Row="1"
+                Grid.ColumnSpan="3"
+                BackgroundColor="{Binding BorderColor, FallbackValue='Black'}"
+                HeightRequest="2"
+                HorizontalOptions="Fill" />
+
+			<Frame 
+				Grid.Column="2"
+				BorderColor="{Binding CardBorderColor}"
+				Padding="2">
+				<BoxView
+					BackgroundColor="{Binding BiomeColor}"
+					WidthRequest="20"
+					HeightRequest="20"/>				
+			</Frame>
+
+		</Grid>
 	</Frame>
 </ContentView>
