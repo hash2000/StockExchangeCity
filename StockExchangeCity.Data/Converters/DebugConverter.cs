@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace StockExchangeCity.UI.Converters
+namespace StockExchangeCity.Data.Converters
 {
 	/*
 	 Для отладки xaml. Пример

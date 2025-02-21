@@ -1,4 +1,4 @@
-namespace StockExchangeCity.Data.Shared;
+namespace StockExchangeCity.Data.Resources;
 
 public partial class Prefabs : ResourceDictionary
 {

@@ -1,5 +1,3 @@
-using StockExchangeCity.GameEntities.Map;
-
 namespace StockExchangeCity.UI.Biomes;
 
 public partial class BiomeCardView : ContentView

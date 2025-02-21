@@ -8,7 +8,6 @@ namespace StockExchangeCity.Data.Loaders
 		{
 			var assembly = Assembly.GetExecutingAssembly();
 			var fullName = $"{assembly.GetName().Name}.Resources.Prefabs.{resourceName.Replace("/", ".")}";
-
 			using var stream = assembly.GetManifestResourceStream(fullName);
 			using var reader = new StreamReader(stream);
 			return await reader.ReadToEndAsync();
