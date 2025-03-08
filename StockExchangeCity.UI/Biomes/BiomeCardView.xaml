@@ -30,12 +30,12 @@
 				VerticalOptions="Start" 
 				HorizontalOptions="Start" />
 
-			<BoxView
+			<!--<BoxView
                 Grid.Row="1"
                 Grid.ColumnSpan="3"
                 BackgroundColor="{Binding BorderColor, FallbackValue='Black'}"
                 HeightRequest="2"
-                HorizontalOptions="Fill" />
+                HorizontalOptions="Fill" />-->
 
 			<Frame 
 				Grid.Column="2"

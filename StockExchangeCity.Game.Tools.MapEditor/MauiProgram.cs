@@ -29,6 +29,7 @@ public static class MauiProgram
 	public static IServiceCollection ConfigureMauiPages(this IServiceCollection services)
 	{
 		services.AddSingleton<BiomesPage>();
+		services.AddSingleton<MapPage>();
 		return services;
 	}
 }

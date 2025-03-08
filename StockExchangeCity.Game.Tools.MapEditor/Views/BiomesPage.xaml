@@ -3,13 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:ui="clr-namespace:StockExchangeCity.UI.Biomes;assembly=StockExchangeCity.UI"
 			 xmlns:biomes="clr-namespace:StockExchangeCity.GameEntities.Map;assembly=StockExchangeCity.GameEntities"
-			 x:Class="StockExchangeCity.Game.Tools.MapEditor.Views.BiomesPage"
-             Title="BiomesPage">
+			 x:Class="StockExchangeCity.Game.Tools.MapEditor.Views.BiomesPage">
 	<ScrollView Orientation="Vertical" VerticalScrollBarVisibility="Always">
 		<VerticalStackLayout x:Name="BiomesPageVerticalStack">
 			<ListView x:Name="BiomesNameListView"
 			ItemsSource="{Binding Items}"
-			HasUnevenRows="false"
+			HasUnevenRows="true"
 			SeparatorVisibility="None">
 				<ListView.ItemTemplate>
 					<DataTemplate>

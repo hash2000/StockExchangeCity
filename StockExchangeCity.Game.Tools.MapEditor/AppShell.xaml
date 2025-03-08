@@ -8,13 +8,15 @@
     Shell.FlyoutBehavior="Flyout"
     Title="StockExchangeCity.Game.Tools.MapEditor">
 
-	<FlyoutItem Title="Настройка биомов">
-		<ShellContent ContentTemplate="{DataTemplate views:BiomesPage}"/>
-	</FlyoutItem>
+
+	<ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage" Title="Главная" />
 	
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+	<FlyoutItem Title="Карты">
+		<ShellContent ContentTemplate="{DataTemplate views:MapPage}" Title="Карты" />
+	</FlyoutItem>
+
+	<FlyoutItem Title="Настройка биомов">
+		<ShellContent ContentTemplate="{DataTemplate views:BiomesPage}" Title="Настройка биомов" />
+	</FlyoutItem>
 
 </Shell>
