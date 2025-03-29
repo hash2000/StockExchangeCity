@@ -5,11 +5,11 @@ public partial class BiomeCardView : ContentView
 	#region BiomeItem
 	public static readonly BindableProperty BiomeItemProperty =
 	BindableProperty.Create(
-		nameof(BiomeItem), typeof(BiomeViewModel), typeof(BiomeCardView));
+		nameof(BiomeItem), typeof(BiomeCardViewModel), typeof(BiomeCardView));
 
-	public BiomeViewModel BiomeItem
+	public BiomeCardViewModel BiomeItem
 	{
-		get => (BiomeViewModel)GetValue(BiomeItemProperty);
+		get => (BiomeCardViewModel)GetValue(BiomeItemProperty);
 		set => SetValue(BiomeItemProperty, value);
 	}
 	#endregion

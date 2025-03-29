@@ -2,7 +2,7 @@ using StockExchangeCity.GameEntities.Map;
 
 namespace StockExchangeCity.UI.Biomes;
 
-public class BiomeViewModel : ContentView
+public class BiomeCardViewModel : ContentView
 {
 	#region BiomeName
 	public static readonly BindableProperty BiomeNameProperty =
@@ -136,7 +136,7 @@ public class BiomeViewModel : ContentView
 	}
 	#endregion
 
-	public BiomeViewModel(Biome biome)
+	public BiomeCardViewModel(Biome biome)
 	{
 		AppendModel(biome);
 	}

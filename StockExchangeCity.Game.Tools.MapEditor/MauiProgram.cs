@@ -1,5 +1,7 @@
-﻿using StockExchangeCity.CurrentHost.HostBuilder;
+﻿using SkiaSharp.Views.Maui.Controls.Hosting;
+using StockExchangeCity.CurrentHost.HostBuilder;
 using StockExchangeCity.Game.Tools.MapEditor.Views;
+using StockExchangeCity.UI;
 
 namespace StockExchangeCity.Game.Tools.MapEditor;
 
@@ -10,6 +12,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseSkiaSharp()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -30,6 +33,7 @@ public static class MauiProgram
 	{
 		services.AddSingleton<BiomesPage>();
 		services.AddSingleton<MapPage>();
+		services.UseGameUIDesignViews();
 		return services;
 	}
 }

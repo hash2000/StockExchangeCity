@@ -21,7 +21,9 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="3.116.1" />
+		<PackageReference Include="Microsoft.Maui.Graphics.Skia" Version="8.0.100" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.8" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Core" Version="2.88.8" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -30,10 +32,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="WorldMaps\WorldMapDesignView.xaml.cs">
+	    <DependentUpon>WorldMapDesignView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Biomes\BiomeCardView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="WorldMaps\WorldMapDesign.xaml">
+	  <MauiXaml Update="WorldMaps\WorldMapDesignView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

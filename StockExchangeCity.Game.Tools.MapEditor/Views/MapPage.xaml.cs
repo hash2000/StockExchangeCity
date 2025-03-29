@@ -7,8 +7,8 @@ public partial class MapPage : ContentPage
 		InitializeComponent();
 	}
 
-	private void Button_Clicked(object sender, EventArgs e)
+	private void GenerateMap_Clicked(object sender, EventArgs e)
 	{
-
-    }
+		
+	}
 }

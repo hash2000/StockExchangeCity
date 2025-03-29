@@ -8,7 +8,7 @@ namespace StockExchangeCity.Game.Tools.MapEditor.Views;
 public partial class BiomesPage : ContentPage
 {
 	private readonly IBiomesDataProvider _biomsDataProvider;
-	private readonly ObservableItemsViewModel<BiomeViewModel> _biomesContext = new ObservableItemsViewModel<BiomeViewModel>();
+	private readonly ObservableItemsViewModel<BiomeCardViewModel> _biomesContext = new ObservableItemsViewModel<BiomeCardViewModel>();
 
 	public BiomesPage(IBiomesDataProvider biomesDataProvider)
 	{
@@ -23,13 +23,13 @@ public partial class BiomesPage : ContentPage
 	{
 		await _biomsDataProvider.LoadAsync();
 
-		List<BiomeViewModel> biomeViewModel = new();
+		List<BiomeCardViewModel> biomeViewModel = new();
 		
 		foreach(var item in _biomsDataProvider.Biomes)
 		{
-			biomeViewModel.Add(new BiomeViewModel(item));
+			biomeViewModel.Add(new BiomeCardViewModel(item));
 		}
 
-		_biomesContext.Items = new ObservableCollection<BiomeViewModel>(biomeViewModel);
+		_biomesContext.Items = new ObservableCollection<BiomeCardViewModel>(biomeViewModel);
 	}
 }
